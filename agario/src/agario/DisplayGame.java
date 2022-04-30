@@ -21,6 +21,8 @@ public class DisplayGame extends JPanel implements ActionListener{
 	public static int WIDTH=840;
 	public static int HEIGHT=680;
 	private int numoffoods=1000;
+        private static int a=0;
+        private static int b=0;
 	private Players player1;
 	private JViewport vPort;
 	private Players player2;
@@ -70,7 +72,6 @@ public class DisplayGame extends JPanel implements ActionListener{
 			menu.render(g2);
 		}
 		else if(state==STATE.GAME){
-
 			poison.drawPoisons(g2);
 			food.drawFood(g2);
 			player1.drawPlayers(g2);
@@ -179,6 +180,17 @@ public class DisplayGame extends JPanel implements ActionListener{
 	public void setPoison(Poisons poison) {
 		this.poison = poison;
 	}
-	
+	public static int getwidthreal() {
+		return a;
+	}
+        private void s(){
+            a = this.getWidth();
+        }
+        public static int getheightreal() {
+		return b;
+	}
+        private void g(){
+            b = this.getHeight();
+        }
 	
 }

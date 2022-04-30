@@ -1,5 +1,4 @@
 package agario;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
@@ -8,8 +7,7 @@ import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class Menu implements MouseListener {
-
+public class Menu implements MouseListener { 
     private Rectangle playButton = new Rectangle(DisplayGame.WIDTH / 2 - 50, DisplayGame.HEIGHT / 2, 100, 50);
     private Rectangle quitButton = new Rectangle(DisplayGame.WIDTH / 2 - 50, DisplayGame.HEIGHT / 2 + 100, 100, 50);
     private boolean enabled = true;
