@@ -40,12 +40,6 @@ public class DisplayGame extends JPanel implements ActionListener{
 	public static STATE state=STATE.MENU;
 
 	public DisplayGame() {
-                if(WIDTH!=this.getWidth()){
-                WIDTH=this.getWidth();
-                }
-                if(HEIGHT!=this.getHeight()){
-                HEIGHT=this.getHeight();
-                }
 		Timer timer=new Timer(1,this);
 		menu= new Menu(this);
 		time=System.nanoTime();
