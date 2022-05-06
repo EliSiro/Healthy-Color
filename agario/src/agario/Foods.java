@@ -4,15 +4,20 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Foods implements Serializable {
-	private Ellipse2D.Double foods[];
+	
+        // creare metodo ad hoc per ripristinare un cibo che è stato mangiato
+        private Ellipse2D.Double foods[];
 	private Color foodColors[];
+        private ArrayList<Integer> noFoodPos;
 	
 	Foods(int numoffoods){
 		foods = new Ellipse2D.Double[numoffoods];
 		foodColors = new Color[numoffoods];
+                noFoodPos = new ArrayList<>();
 		callOnce();
 	}
 	public void callOnce(){
@@ -53,4 +58,24 @@ public class Foods implements Serializable {
 	public void setFoodColors(Color[] foodColors) {
 		this.foodColors = foodColors;
 	}
+
+        // metodo per aggiungere/settare a null un cibo
+        public synchronized void setFoodElement(int pos, Ellipse2D.Double cibo) {
+            foods[pos] = cibo;
+            
+        }
+        
+        // metodo per inserire una nuova posizione (nella lista) in cui manca cibo
+        public synchronized void addNoFoodPos(int pos) {
+            noFoodPos.add(pos);
+        }
+        
+        // metodo che ottiene il primo elemento della lista no cibo (la posizione del vettore food in cui manca cibo)
+        public synchronized int getFirstNoFoodPos() {
+            if (!noFoodPos.isEmpty())
+                return noFoodPos.remove(0);
+            else
+                return -1;
+        }
+        
 }

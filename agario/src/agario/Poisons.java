@@ -4,15 +4,18 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.JViewport;
 
 public class Poisons implements Serializable {
 	private Ellipse2D.Double poisons[];
 	private Color color = Color.GREEN;
+        private ArrayList<Integer> noPoisonsPos;
 	
 	Poisons(int numofpoisons){
 		poisons= new Ellipse2D.Double[numofpoisons];
+                noPoisonsPos = new ArrayList<>();
 		initializePoisons();
 	}
 
@@ -48,7 +51,24 @@ public class Poisons implements Serializable {
 		this.color = color;
 	}
 
-    void drawPoisons(JViewport vport) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
+    // metodo per aggiungere/settare a null un cibo
+        public synchronized void setPoisonElement(int pos, Ellipse2D.Double veleno) {
+            poisons[pos] = veleno;
+            
+        }
+        
+        // metodo per inserire una nuova posizione (nella lista) in cui manca cibo
+        public synchronized void addNoPoisonPos(int pos) {
+            noPoisonsPos.add(pos);
+        }
+        
+        // metodo che ottiene il primo elemento della lista no cibo (la posizione del vettore food in cui manca cibo)
+        public synchronized int getFirstNoPoisonPos() {
+            if (!noPoisonsPos.isEmpty())
+                return noPoisonsPos.remove(0);
+            else
+                return -1;
+        }
+        
 }

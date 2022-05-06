@@ -17,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 import javax.swing.*;
 
 public class DisplayGame extends JPanel implements ActionListener{
+        // servono un array/list di giocatori controllati dalla CPU (= ogni gioatore deve essere un thread)
 	private Rectangle outerArea;
 	public static int WIDTH=840;
 	public static int HEIGHT=680;
@@ -33,6 +34,8 @@ public class DisplayGame extends JPanel implements ActionListener{
 	private Point pointPlayer1;
 	private JTextField connect;
 	public String[] args;
+        private ThreadFood tf; 
+        private ThreadPoison tp;
 	public static enum STATE{
 		MENU,
 		GAME,
@@ -52,10 +55,15 @@ public class DisplayGame extends JPanel implements ActionListener{
 		player2 = new Players();               
 		poison = new Poisons(numoffoods/10);
 		food= new Foods(numoffoods);
+                tf = new ThreadFood(food);
+                tp = new ThreadPoison(poison);
+                tf.start();
+                tp.start();
+
 		Dimension newSize = new Dimension(4000,3000);
 		outerArea= new Rectangle(0, 0, 4000, 3000);
-                
 		setPreferredSize(newSize);
+
 		timer.start();
                 
 	}	
@@ -102,7 +110,9 @@ public class DisplayGame extends JPanel implements ActionListener{
 	public void didBallIntersect(){
 		for (int i = 0; i < food.getFoods().length; i++) {
 			if(food.getFoods()[i]!=null && player1.getPlayer().getBounds().intersects(food.getFoods()[i].getBounds())){
-				food.getFoods()[i] = null;
+				//food.getFoods()[i] = null;
+                                food.setFoodElement(i, null);
+                                food.addNoFoodPos(i);
 				player1.increaseSize();
 			}
 		}
@@ -114,8 +124,10 @@ public class DisplayGame extends JPanel implements ActionListener{
 		}
 		for (int i = 0; i < poison.getPoisons().length; i++) {
 			if(poison.getPoisons()[i]!=null && player1.getPlayer().getBounds().intersects(poison.getPoisons()[i].getBounds())){
-				poison.getPoisons()[i]=null;
-				player1.decreaseSize();
+				//poison.getPoisons()[i]=null;
+				poison.setPoisonElement(i, null);
+                                poison.addNoPoisonPos(i);
+                                player1.decreaseSize();
 			}
 		}
 		for (int i = 0; i < poison.getPoisons().length; i++) {
