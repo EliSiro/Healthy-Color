@@ -1,6 +1,7 @@
 package agario;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -14,9 +15,11 @@ public class Menu implements MouseListener {
     private DisplayGame displayGame;
     private Point pointPlayer1;
     public String[] args;
+    private Frame f;
 
-    public Menu(DisplayGame displayGame) {
+    public Menu(DisplayGame displayGame, Frame f) {
         this.displayGame = displayGame;
+        this.f = f;
     }
 
     public void setArgs(String[] A) {
@@ -27,11 +30,15 @@ public class Menu implements MouseListener {
         Font font = new Font("calibri", Font.BOLD, 50);
         g2.setFont(font);
         g2.setColor(Color.YELLOW);
-        g2.fillOval(DisplayGame.WIDTH / 2 - 73, DisplayGame.HEIGHT / 2 - 250, 150, 150);
+        g2.fillOval(f.getWidth() / 2 - 73, f.getHeight() / 2 - 250, 150, 150);
+        
         g2.setColor(Color.ORANGE);
-        g2.drawString("         player 1", DisplayGame.WIDTH / 2 - 170, 300);
+        g2.drawString("Good Game", f.getWidth() / 2 - 140, f.getHeight() / 2 - 50);
+        
         g2.setColor(Color.BLACK);
-        g2.drawString("Play", playButton.x, playButton.y + 40);
+        playButton = new Rectangle(f.getWidth() / 2 - 50, f.getHeight() / 2, 100, 50);
+        quitButton = new Rectangle(f.getWidth() / 2 - 50, f.getHeight() / 2 + 100, 100, 50);
+        g2.drawString("Play", playButton.x, playButton.y + 40);         
         g2.drawString("Quit", quitButton.x, quitButton.y + 40);
     }
 
@@ -81,8 +88,10 @@ public class Menu implements MouseListener {
         if (enabled) {
             int mx = e.getX();
             int my = e.getY();
-            if (mx >= 370 && mx <= 470) {
-                if (my >= 340 && my <= 390) {
+            int mDonnax = f.getWidth() / 2 - 50;
+            int mDonnay = f.getHeight() / 2;
+            if (mx >= mDonnax && mx <= mDonnax + 100) {
+                if (my >= mDonnay && my <= mDonnay + 50) {
                     DisplayGame.state = DisplayGame.STATE.GAME;
                     enabled = false;
                 }

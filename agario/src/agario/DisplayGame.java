@@ -3,6 +3,7 @@ package agario;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -21,6 +22,8 @@ public class DisplayGame extends JPanel implements ActionListener{
 	private Rectangle outerArea;
 	public static int WIDTH=840;
 	public static int HEIGHT=680;
+        private int currentWidth;
+        private int currentHeitht;
 	private int numoffoods=1000;
         private static int a=0;
         private static int b=0;
@@ -36,6 +39,7 @@ public class DisplayGame extends JPanel implements ActionListener{
 	public String[] args;
         private ThreadFood tf; 
         private ThreadPoison tp;
+        private Frame f;
 	public static enum STATE{
 		MENU,
 		GAME,
@@ -44,10 +48,11 @@ public class DisplayGame extends JPanel implements ActionListener{
 	};
 	public static STATE state=STATE.MENU;
 
-	public DisplayGame() {
+	public DisplayGame(Frame f) {
 		Timer timer=new Timer(1,this);
-		menu= new Menu(this);
-		time=System.nanoTime();
+                time=System.nanoTime();
+                this.f = f;
+		menu= new Menu(this, f);
 		addMouseListener(menu);
 		setFocusable(true);
 		requestFocusInWindow();
@@ -59,10 +64,13 @@ public class DisplayGame extends JPanel implements ActionListener{
                 tp = new ThreadPoison(poison);
                 tf.start();
                 tp.start();
+                
 
 		Dimension newSize = new Dimension(4000,3000);
 		outerArea= new Rectangle(0, 0, 4000, 3000);
 		setPreferredSize(newSize);
+                currentWidth = WIDTH;
+                currentHeitht = HEIGHT;
 
 		timer.start();
                 
@@ -204,5 +212,5 @@ public class DisplayGame extends JPanel implements ActionListener{
         private void g(){
             b = this.getHeight();
         }
-	
+        
 }

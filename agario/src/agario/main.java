@@ -15,7 +15,7 @@ public class main {
 		JFrame frame= new JFrame("agar.io");
 		JScrollPane pane= new JScrollPane();
 		JViewport vport= new JViewport();
-		DisplayGame panel= new DisplayGame();
+		DisplayGame panel= new DisplayGame(frame);
 		Poisons poi = new Poisons(5);
                 
                 
