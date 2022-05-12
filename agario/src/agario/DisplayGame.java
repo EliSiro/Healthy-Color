@@ -20,13 +20,11 @@ import javax.swing.*;
 public class DisplayGame extends JPanel implements ActionListener{
         // servono un array/list di giocatori controllati dalla CPU (= ogni gioatore deve essere un thread)
 	private Rectangle outerArea;
-	public static int WIDTH=840;
-	public static int HEIGHT=680;
+	public static int WIDTH=1920;
+	public static int HEIGHT=1080;
         private int currentWidth;
         private int currentHeitht;
 	private int numoffoods=1000;
-        private static int a=0;
-        private static int b=0;
 	private Players player1;
 	private JViewport vPort;
 	private Players player2;
@@ -150,9 +148,9 @@ public class DisplayGame extends JPanel implements ActionListener{
 		double a=TimeUnit.SECONDS.convert(System.nanoTime() - time, TimeUnit.NANOSECONDS);
 		Font font= new Font("arial",Font.BOLD,15);
 		g2.setFont(font);
-		g2.drawString("SPEED: "+new DecimalFormat("##.##").format(player1.getVelocity()),(int)(player1.getX()-350), (int)(player1.getY()-300));
-		g2.drawString("RADIUS OF BALL: "+Math.floor(player1.getPlayer().height),(int)(player1.getX()-350), (int)(player1.getY()-280));
-		g2.drawString("TIME: "+a, (int)(player1.getX()-350),  (int)(player1.getY()-260));
+		g2.drawString("SPEED: "+new DecimalFormat("##.##").format(player1.getVelocity()),(int)(player1.getX()-950), (int)(player1.getY()-520));
+		g2.drawString("RADIUS OF BALL: "+Math.floor(player1.getPlayer().height),(int)(player1.getX()-950), (int)(player1.getY()-500));
+		g2.drawString("TIME: "+a, (int)(player1.getX()-950),  (int)(player1.getY()-480));
 	}
 
 	@Override
@@ -171,6 +169,14 @@ public class DisplayGame extends JPanel implements ActionListener{
 					player1.getPlayer().y+=(int)(player1.getVelocity()*Math.sin(angle));
 					Point view = new Point((int)player1.getPlayer().x-WIDTH/2,(int)player1.getPlayer().y-HEIGHT/2);
 					if(player1.getX()>=2500 || player1.getY()>=2000)
+                                        {
+                                            
+                                        }
+                                        else
+                                        {
+                                            vPort.setViewPosition(view);
+                                        }
+                                        if(player1.getX()>=2000 || player1.getY()>=2000)
                                         {
                                             
                                         }
@@ -207,17 +213,5 @@ public class DisplayGame extends JPanel implements ActionListener{
 	public void setPoison(Poisons poison) {
 		this.poison = poison;
 	}
-	public static int getwidthreal() {
-		return a;
-	}
-        private void s(){
-            a = this.getWidth();
-        }
-        public static int getheightreal() {
-		return b;
-	}
-        private void g(){
-            b = this.getHeight();
-        }
         
 }
