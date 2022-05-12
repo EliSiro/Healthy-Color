@@ -170,7 +170,14 @@ public class DisplayGame extends JPanel implements ActionListener{
 					player1.getPlayer().x+=(int)(player1.getVelocity()*Math.cos(angle));
 					player1.getPlayer().y+=(int)(player1.getVelocity()*Math.sin(angle));
 					Point view = new Point((int)player1.getPlayer().x-WIDTH/2,(int)player1.getPlayer().y-HEIGHT/2);
-					vPort.setViewPosition(view);
+					if(player1.getX()>=2500 || player1.getY()>=2000)
+                                        {
+                                            
+                                        }
+                                        else
+                                        {
+                                            vPort.setViewPosition(view);
+                                        }
 				}
 			}		
 			repaint();
