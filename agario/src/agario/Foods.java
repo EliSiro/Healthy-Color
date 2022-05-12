@@ -76,5 +76,8 @@ public class Foods implements Serializable {
             else
                 return -1;
         }
+         public synchronized void respawnfood() {
+			
+        }
         
 }

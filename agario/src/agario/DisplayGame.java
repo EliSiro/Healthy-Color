@@ -116,6 +116,7 @@ public class DisplayGame extends JPanel implements ActionListener{
 		}
 	}
 	public void didBallIntersect(){
+            food.respawnfood();
 		for (int i = 0; i < food.getFoods().length; i++) {
 			if(food.getFoods()[i]!=null && player1.getPlayer().getBounds().intersects(food.getFoods()[i].getBounds())){
 				//food.getFoods()[i] = null;
