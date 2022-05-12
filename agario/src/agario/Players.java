@@ -9,11 +9,11 @@ import java.util.Random;
 public class Players implements Serializable {
 	private Ellipse2D.Double Player;
 	private Color playerColor;
-	private double velocity=5;
+	private double velocity=25;
 	Random random;
 	Players(){
 		random = new Random();
-		Player=new Ellipse2D.Double(random.nextInt(500)+2000, random.nextInt(500)+1000, 25, 25);
+		Player=new Ellipse2D.Double(random.nextInt(500)+3000, random.nextInt(500)+2000, 25, 25);
 		playerColor= new Color(random.nextInt(255),random.nextInt(255),random.nextInt(255));
 	}
 	public void drawPlayers(Graphics2D g2){

@@ -20,6 +20,7 @@ import javax.swing.*;
 public class DisplayGame extends JPanel implements ActionListener{
         // servono un array/list di giocatori controllati dalla CPU (= ogni gioatore deve essere un thread)
 	private Rectangle outerArea;
+        private Rectangle Bordo;
 	public static int WIDTH=1920;
 	public static int HEIGHT=1080;
         private int currentWidth;
@@ -64,12 +65,12 @@ public class DisplayGame extends JPanel implements ActionListener{
                 tp.start();
                 
 
-		Dimension newSize = new Dimension(4000,3000);
-		outerArea= new Rectangle(0, 0, 4000, 3000);
+		Dimension newSize = new Dimension(7000,7000);
+		outerArea= new Rectangle(0, 0, 7000, 7000);
+                Bordo= new Rectangle(1000,1000,5040,5040);
 		setPreferredSize(newSize);
                 currentWidth = WIDTH;
                 currentHeitht = HEIGHT;
-
 		timer.start();
                 
 	}	
@@ -95,6 +96,7 @@ public class DisplayGame extends JPanel implements ActionListener{
 			didBallIntersect();
 			printInfoBall(g2);
 			whoWon();
+                        g2.draw(Bordo);
 			g2.draw(outerArea);
 			g2.dispose();
 		}
@@ -166,17 +168,25 @@ public class DisplayGame extends JPanel implements ActionListener{
 				if(mousePosition.getX()<player1.getPlayer().getBounds().getMinX()||mousePosition.getX()>player1.getPlayer().getBounds().getMaxX()||mousePosition.getY()<
                                         player1.getPlayer().getBounds().getMinY()||mousePosition.getY()>player1.getPlayer().getBounds().getMaxY()){
 					player1.getPlayer().x+=(int)(player1.getVelocity()*Math.cos(angle));
-					player1.getPlayer().y+=(int)(player1.getVelocity()*Math.sin(angle));
-					Point view = new Point((int)player1.getPlayer().x-WIDTH/2,(int)player1.getPlayer().y-HEIGHT/2);
-					if(player1.getX()>=2500 || player1.getY()>=2000)
+                                        player1.getPlayer().y+=(int)(player1.getVelocity()*Math.sin(angle));
+                                        if(player1.getX()>=6000)
                                         {
-                                            
+                                            player1.getPlayer().x = 5998;
                                         }
-                                        else
+                                        if(player1.getX()<=1000)
                                         {
-                                            vPort.setViewPosition(view);
+                                            player1.getPlayer().x = 1002;
                                         }
-                                        if(player1.getX()>=2000 || player1.getY()>=2000)
+                                        if(player1.getY()>=6000)
+                                        {
+                                            player1.getPlayer().y = 5998;
+                                        }
+                                        if(player1.getY()<=1000)
+                                        {
+                                            player1.getPlayer().y = 1002;
+                                        }
+                                        Point view = new Point((int)player1.getPlayer().x-WIDTH/2,(int)player1.getPlayer().y-HEIGHT/2);
+                                        if(player1.getX()>=6000 || player1.getY()>=6000 || player1.getX()<=1000 || player1.getY()<=1000)
                                         {
                                             
                                         }

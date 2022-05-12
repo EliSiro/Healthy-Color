@@ -31,7 +31,7 @@ public class Poisons implements Serializable {
 		Random a=new Random();
 
 		for (int i = 0; i < poisons.length; i++) {
-			poisons[i]=new Ellipse2D.Double(a.nextInt(4000), a.nextInt(3000),40, 40);
+			poisons[i]=new Ellipse2D.Double((int)(Math.random()*(6000-1000+1)+1000), (int)(Math.random()*(6000-1000+1)+1000),40, 40);
 			}
 	}
 
