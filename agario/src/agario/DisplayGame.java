@@ -82,7 +82,7 @@ public class DisplayGame extends JPanel implements ActionListener{
 		super.paintComponent(g);
 		Graphics2D g2=(Graphics2D)g;
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		//setBackground(Color.GRAY);
+		setBackground(Color.GRAY);
 		if(state==STATE.MENU){
 			menu.render(g2);
 		}

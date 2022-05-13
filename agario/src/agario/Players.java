@@ -9,7 +9,7 @@ import java.util.Random;
 public class Players implements Serializable {
 	private Ellipse2D.Double Player;
 	private Color playerColor;
-	private double velocity=5;
+	private double velocity=200005;
 	Random random;
 	Players(){
 		random = new Random();
