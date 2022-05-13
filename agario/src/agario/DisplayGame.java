@@ -91,7 +91,7 @@ public class DisplayGame extends JPanel implements ActionListener{
 			food.drawFood(g2);
 			player1.drawPlayers(g2);
 			player2.drawPlayers(g2);
-			pointPlayer1= new Point((int)(player1.getX()),(int)(player1.getY()));
+			pointPlayer1= new Point((int)(player1.getX()-player1.getPlayer().width-100),(int)(player1.getY()-player1.getPlayer().height-100));
 			menu.setPoint(pointPlayer1);
 			didBallIntersect();
 			printInfoBall(g2);
@@ -116,7 +116,6 @@ public class DisplayGame extends JPanel implements ActionListener{
 		}
 	}
 	public void didBallIntersect(){
-            food.respawnfood();
 		for (int i = 0; i < food.getFoods().length; i++) {
 			if(food.getFoods()[i]!=null && player1.getPlayer().getBounds().intersects(food.getFoods()[i].getBounds())){
 				//food.getFoods()[i] = null;
@@ -163,7 +162,6 @@ public class DisplayGame extends JPanel implements ActionListener{
 			if(mousePosition==null)return;
 			double dx = mousePosition.x - player1.getPlayer().x - player1.getPlayer().width/2;
 			double dy = mousePosition.y - player1.getPlayer().y - player1.getPlayer().height/2;
-
 			if(dx*dx+dy*dy >12){
 				double angle=Math.atan2(dy, dx);
 				if(mousePosition.getX()<player1.getPlayer().getBounds().getMinX()||mousePosition.getX()>player1.getPlayer().getBounds().getMaxX()||mousePosition.getY()<
@@ -186,7 +184,9 @@ public class DisplayGame extends JPanel implements ActionListener{
                                         {
                                             player1.getPlayer().y = 1002;
                                         }
-                                        Point view = new Point((int)player1.getPlayer().x-WIDTH/2,(int)player1.getPlayer().y-HEIGHT/2);
+                                        Point view = new Point((int)player1.getPlayer().getX()-WIDTH/2,(int)player1.getPlayer().getY()-HEIGHT/2);
+                                       // Point view = new Point((int)player1.getPlayer().x-WIDTH/2,(int)player1.getPlayer().y-HEIGHT/2);
+                                        
                                         if(player1.getX()>=6000 || player1.getY()>=6000 || player1.getX()<=1000 || player1.getY()<=1000)
                                         {
                                             
