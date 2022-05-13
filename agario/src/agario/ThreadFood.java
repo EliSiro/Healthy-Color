@@ -30,7 +30,7 @@ public class ThreadFood extends Thread {
         while(true) {
             pos=food.getFirstNoFoodPos();
             if(pos != -1) {
-                cibo = new Ellipse2D.Double(rn.nextInt(4000), rn.nextInt(3000), 9.3, 9.3); // cibo random
+                cibo = new Ellipse2D.Double((int)(Math.random()*(6000-1000+1)+1000), (int)(Math.random()*(6000-1000+1)+1000), 9.3, 9.3); // cibo random
                 //cibo = new Ellipse2D.Double(food.getX(), food.getY(), 9.3, 9.3); // cibo dove era prima
                 food.setFoodElement(pos, cibo);
                 //System.out.println("Ripristinato"+cont);

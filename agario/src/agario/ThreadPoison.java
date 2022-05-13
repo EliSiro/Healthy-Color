@@ -31,7 +31,7 @@ public class ThreadPoison extends Thread {
         while(true) {
             pos=poison.getFirstNoPoisonPos();
             if(pos != -1) {
-                ps = new Ellipse2D.Double(rn.nextInt(4000), rn.nextInt(3000), 40, 40); // veleno random
+                ps = new Ellipse2D.Double((int)(Math.random()*(6000-1000+1)+1000), (int)(Math.random()*(6000-1000+1)+1000), 20, 20); // veleno random
                 //ps = new Ellipse2D.Double(poison.getX(), poison.getY(), 40, 40); // veleno dove era prima
                 poison.setPoisonElement(pos, ps);
                 //System.out.println("Ripristinato"+cont);

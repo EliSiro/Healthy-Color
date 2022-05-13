@@ -1,8 +1,13 @@
 package agario;
 
+import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JViewport;
@@ -12,9 +17,16 @@ public class main {
 
     public static boolean gamemode;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         JFrame frame = new JFrame("agar.io");
+        JFrame f = new JFrame("stackoverflow") {
+            private Image backgroundImage = ImageIO.read(new File("sfondo.jpg"));
+            public void paint(Graphics g) {
+                super.paint(g);
+                g.drawImage(backgroundImage, 0, 0, null);
+            }
+        };
         JScrollPane pane = new JScrollPane();
         JViewport vport = new JViewport();
         DisplayGame panel = new DisplayGame(frame);
@@ -29,8 +41,8 @@ public class main {
         frame.setSize(DisplayGame.WIDTH, DisplayGame.HEIGHT);
         frame.addComponentListener(new ComponentAdapter() {
             public void componentResized(ComponentEvent evt) {
-               DisplayGame.WIDTH=frame.getWidth();
-               DisplayGame.HEIGHT=frame.getHeight();
+                DisplayGame.WIDTH = frame.getWidth();
+                DisplayGame.HEIGHT = frame.getHeight();
             }
         });
         panel.setvPort(vport);
