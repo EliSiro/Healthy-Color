@@ -9,7 +9,7 @@ import java.util.Random;
 public class Players implements Serializable {
 	private Ellipse2D.Double Player;
 	private Color playerColor;
-	private double velocity=25;
+	private double velocity=5;
 	Random random;
 	Players(){
 		random = new Random();
@@ -21,14 +21,14 @@ public class Players implements Serializable {
 		g2.fill(Player);
 	}
 	public void increaseSize(){
-		Player.width += 5;
-		Player.height +=5;
+		Player.width += 1;
+		Player.height +=1;
 		velocity -= 0.03;
 	}
 	public void decreaseSize(){
 		Player.width -= 2;
 		Player.height -=2;
-		velocity += 0.5;
+		velocity += 0.05;
 	}
 	public void moveRight(){
 		Player.x+=1;

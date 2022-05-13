@@ -184,7 +184,7 @@ public class DisplayGame extends JPanel implements ActionListener{
                                         {
                                             player1.getPlayer().y = 1002;
                                         }
-                                        Point view = new Point((int)player1.getPlayer().getX()-WIDTH/2,(int)player1.getPlayer().getY()-HEIGHT/2);
+                                        Point view = new Point((int)player1.getPlayer().getX()+(int)player1.getPlayer().height/2-WIDTH/2,(int)player1.getPlayer().getY()+(int)player1.getPlayer().height/2-HEIGHT/2);
                                        // Point view = new Point((int)player1.getPlayer().x-WIDTH/2,(int)player1.getPlayer().y-HEIGHT/2);
                                         
                                         if(player1.getX()>=6000 || player1.getY()>=6000 || player1.getX()<=1000 || player1.getY()<=1000)
