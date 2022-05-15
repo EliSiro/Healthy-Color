@@ -8,7 +8,10 @@ import java.awt.event.ComponentEvent;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageInputStream;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JViewport;
 import javax.swing.ScrollPaneConstants;
@@ -27,6 +30,11 @@ public class main {
                 g.drawImage(backgroundImage, 0, 0, null);
             }
         };*/
+
+        //JLabel background = new JLabel("");
+        //background.setIcon(new ImageIcon("C:\\Users\\ricca\\Documents\\GitHub\\Healthy-Color\\agario\\src\\agario\\images\\sfondo_ok.jpg"));
+        //background.setBounds(1000, 1000, 1920, 1080);
+        //frame.add(background);
         JScrollPane pane = new JScrollPane();
         JViewport vport = new JViewport();
         DisplayGame panel = new DisplayGame(frame);

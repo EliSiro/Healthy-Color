@@ -6,15 +6,23 @@ import java.awt.Font;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class DisplayGame extends JPanel implements ActionListener{
@@ -39,6 +47,7 @@ public class DisplayGame extends JPanel implements ActionListener{
         private ThreadFood tf; 
         private ThreadPoison tp;
         private Frame f;
+        private BufferedImage background;
 	public static enum STATE{
 		MENU,
 		GAME,
@@ -72,6 +81,12 @@ public class DisplayGame extends JPanel implements ActionListener{
                 currentWidth = WIDTH;
                 currentHeitht = HEIGHT;
 		timer.start();
+                background = null;
+            try {
+                background = ImageIO.read(new File(".\\src\\agario\\images\\sfondo_ok.jpg"));
+            } catch (IOException ex) {
+                Logger.getLogger(DisplayGame.class.getName()).log(Level.SEVERE, null, ex);
+            }
                 
 	}	
 	public void setvPort(JViewport vPort) {
@@ -81,8 +96,9 @@ public class DisplayGame extends JPanel implements ActionListener{
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2=(Graphics2D)g;
-		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		setBackground(Color.GRAY);
+		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);               
+                g2.drawImage(background, 1000, 1000, 5040, 5040, this);
+		//setBackground(Color.GRAY);
 		if(state==STATE.MENU){
 			menu.render(g2);
 		}
@@ -185,7 +201,7 @@ public class DisplayGame extends JPanel implements ActionListener{
                                             player1.getPlayer().y = 1002;
                                         }
                                         Point view = new Point((int)player1.getPlayer().getX()+(int)player1.getPlayer().height/2-WIDTH/2,(int)player1.getPlayer().getY()+(int)player1.getPlayer().height/2-HEIGHT/2);
-                                       // Point view = new Point((int)player1.getPlayer().x-WIDTH/2,(int)player1.getPlayer().y-HEIGHT/2);
+                                      // Point view = new Point((int)player1.getPlayer().x-WIDTH/2,(int)player1.getPlayer().y-HEIGHT/2);
                                         
                                         if(player1.getX()>=6000 || player1.getY()>=6000 || player1.getX()<=1000 || player1.getY()<=1000)
                                         {
