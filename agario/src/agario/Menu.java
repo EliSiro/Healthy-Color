@@ -7,6 +7,9 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import javax.imageio.ImageIO;
 
 public class Menu implements MouseListener { 
     private Rectangle playButton = new Rectangle(DisplayGame.WIDTH / 2 - 50, DisplayGame.HEIGHT / 2, 100, 50);
@@ -16,6 +19,7 @@ public class Menu implements MouseListener {
     private Point pointPlayer1;
     public String[] args;
     private Frame f;
+    private BufferedImage logo;
 
     public Menu(DisplayGame displayGame, Frame f) {
         this.displayGame = displayGame;
@@ -29,7 +33,7 @@ public class Menu implements MouseListener {
     public void render(Graphics2D g2) {
         Font font = new Font("calibri", Font.BOLD, 50);
         g2.setFont(font);
-        g2.setColor(Color.YELLOW);
+        logo = ImageIO.read(new File("C:\\Users\\Tommaso\\Desktop\\Principale\\Scuola_Superiori\\Tommy\\ANNO_2022\\Progetto_Tecnologie_Agar.Io_20.05.2022\\Healthy-Color\\agario\\src\\agario\\images\\Healthy_Color_Logo.png"));
         g2.fillOval(f.getWidth() / 2 - 73, f.getHeight() / 2 - 250, 150, 150);
         
         g2.setColor(Color.ORANGE);
