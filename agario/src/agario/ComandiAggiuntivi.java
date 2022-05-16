@@ -34,7 +34,10 @@ public class ComandiAggiuntivi implements KeyListener{
         System.out.println(e);
         if (e.getKeyCode() == KeyEvent.VK_SPACE) //se premo spazio
         {
-            
+            p.halveSizeFather();
+            p.countHalve();
+            p.halveSizeSon();
+                    
         }
         if (e.getKeyCode() == KeyEvent.VK_W)// se premo w
         {

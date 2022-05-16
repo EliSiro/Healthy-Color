@@ -7,7 +7,14 @@ import java.io.Serializable;
 import java.util.Random;
 
 public class Players implements Serializable {
+        private int counterHalve = 0;
 	private Ellipse2D.Double Player;
+        private Ellipse2D.Double SonPlayer1;
+        private Ellipse2D.Double SonPlayer2;
+        private Ellipse2D.Double SonPlayer3;
+        private Ellipse2D.Double SonPlayer4;
+        private Ellipse2D.Double SonPlayer5;
+        private Ellipse2D.Double SonPlayer6;
 	private Color playerColor;
 	private double velocity=5; //200005
 	Random random;
@@ -16,10 +23,14 @@ public class Players implements Serializable {
 		Player=new Ellipse2D.Double(random.nextInt(500)+3000, random.nextInt(500)+2000, 25, 25);
 		playerColor= new Color(random.nextInt(255),random.nextInt(255),random.nextInt(255));
 	}
+        
+        
 	public void drawPlayers(Graphics2D g2){
 		g2.setColor(playerColor);
 		g2.fill(Player);
 	}
+        
+        
 	public void increaseSize(){
 		Player.width += 1;
 		Player.height +=1;
@@ -31,13 +42,64 @@ public class Players implements Serializable {
 		velocity += 0.05;
 	}
         
-        public void halveSize()
+        
+        public void countHalve()
         {
+            counterHalve++;
+        }
+        
+        public void halveSizeFather()
+        {
+            
+            //Padre
             Player.width = Player.width / 2;
             Player.height = Player.height / 2;
             velocity = velocity * 2;
         }
-                
+        
+        public void halveSizeSon()
+        {
+            if(counterHalve == 0)
+            {
+            SonPlayer1.width = Player.width;
+            SonPlayer1.height = Player.height;
+            }
+            
+            if(counterHalve == 1)
+            {
+            SonPlayer2.width = Player.width;
+            SonPlayer2.height = Player.height;
+            }
+            
+            if(counterHalve == 2)
+            {
+            SonPlayer3.width = Player.width;
+            SonPlayer3.height = Player.height;
+            }
+            
+            if(counterHalve == 3)
+            {
+            SonPlayer4.width = Player.width;
+            SonPlayer4.height = Player.height;
+            }
+            
+            if(counterHalve == 4)
+            {
+            SonPlayer5.width = Player.width;
+            SonPlayer5.height = Player.height;
+            }
+            
+            if(counterHalve == 5)
+            {
+            SonPlayer6.width = Player.width;
+            SonPlayer6.height = Player.height;
+            }
+            
+        }
+        
+        
+        
+        
 	public void moveRight(){
 		Player.x+=1;
 	}
