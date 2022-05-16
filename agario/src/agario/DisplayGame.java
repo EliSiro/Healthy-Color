@@ -34,9 +34,10 @@ public class DisplayGame extends JPanel implements ActionListener{
         private int currentWidth;
         private int currentHeitht;
 	private int numoffoods=1000;
-	private Players player1;
+	public Players player1;
 	private JViewport vPort;
 	private Players player2;
+        private ComandiAggiuntivi comandi;
 	private Foods food;
 	private long time;
 	private Poisons poison;
@@ -65,7 +66,8 @@ public class DisplayGame extends JPanel implements ActionListener{
 		setFocusable(true);
 		requestFocusInWindow();
 		player1 = new Players();
-		player2 = new Players();               
+		player2 = new Players();    
+                comandi = new ComandiAggiuntivi(this, player1, poison);
 		poison = new Poisons(numoffoods/10);
 		food= new Foods(numoffoods);
                 tf = new ThreadFood(food);
