@@ -37,6 +37,7 @@ public class ComandiAggiuntivi implements KeyListener{
             p.halveSizeFather();
             p.countHalve();
             p.halveSizeSon();
+            
                     
         }
         if (e.getKeyCode() == KeyEvent.VK_W)// se premo w

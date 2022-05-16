@@ -49,6 +49,9 @@ public class DisplayGame extends JPanel implements ActionListener{
         private ThreadPoison tp;
         private Frame f;
         private BufferedImage background;
+        
+        Players p;
+        
 	public static enum STATE{
 		MENU,
 		GAME,
@@ -97,9 +100,32 @@ public class DisplayGame extends JPanel implements ActionListener{
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+                //G2
 		Graphics2D g2=(Graphics2D)g;
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);               
                 g2.drawImage(background, 1000, 1000, 5040, 5040, this);
+                
+                //G3
+                Graphics2D g3=(Graphics2D)g;
+		g3.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);               
+                g3.drawImage(background, 1000, 1000, 5040, 5040, this);
+                
+                //G4
+                Graphics2D g4=(Graphics2D)g;
+		g4.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);               
+                g4.drawImage(background, 1000, 1000, 5040, 5040, this);
+                
+                //G5
+                Graphics2D g5=(Graphics2D)g;
+		g5.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);               
+                g5.drawImage(background, 1000, 1000, 5040, 5040, this);
+                
+                //G6
+                Graphics2D g6=(Graphics2D)g;
+		g6.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);               
+                g6.drawImage(background, 1000, 1000, 5040, 5040, this);
+                
+                
 		//setBackground(Color.GRAY);
 		if(state==STATE.MENU){
 			menu.render(g2);
@@ -107,8 +133,37 @@ public class DisplayGame extends JPanel implements ActionListener{
 		else if(state==STATE.GAME){
 			poison.drawPoisons(g2);
 			food.drawFood(g2);
-			player1.drawPlayers(g2);
-			player2.drawPlayers(g2);
+			player1.drawPlayerG2(g2);
+                        if(p.countHalve() == 1)
+                        {
+                            SonPlayer1.drawPlayer(g2);
+                        }
+                        
+                        if(p.countHalve() == 2)
+                        {
+                            SonPlayer2.drawPlayer(g2);
+                        }
+                        
+                        if(p.countHalve() == 3)
+                        {
+                            SonPlayer3.drawPlayer(g2);
+                        }
+                        
+                        if(p.countHalve() == 4)
+                        {
+                            SonPlayer4.drawPlayer(g2);
+                        }
+                        
+                        if(p.countHalve() == 5)
+                        {
+                            SonPlayer5.drawPlayer(g2);
+                        }
+                        
+                        if(p.countHalve() == 6)
+                        {
+                            SonPlayer6.drawPlayer(g2);
+                        }
+                        
 			pointPlayer1= new Point((int)(player1.getX()-player1.getPlayer().width-100),(int)(player1.getY()-player1.getPlayer().height-100));
 			menu.setPoint(pointPlayer1);
 			didBallIntersect();

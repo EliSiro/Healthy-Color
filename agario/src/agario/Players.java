@@ -25,10 +25,32 @@ public class Players implements Serializable {
 	}
         
         
-	public void drawPlayers(Graphics2D g2){
+	public void drawPlayerG2(Graphics2D g2){
 		g2.setColor(playerColor);
 		g2.fill(Player);
 	}
+        
+        public void drawPlayerG3(Graphics2D g3){
+                g3.setColor(playerColor);
+		g3.fill(SonPlayer1);
+            
+	}
+        
+        public void drawPlayerG4(Graphics2D g4){
+                g4.setColor(playerColor);
+		g4.fill(SonPlayer2);
+	}
+        
+        public void drawPlayerG5(Graphics2D g5){
+                g5.setColor(playerColor);
+		g5.fill(SonPlayer3);
+	}
+        
+        public void drawPlayerG6(Graphics2D g6){
+                g6.setColor(playerColor);
+		g6.fill(SonPlayer4);
+	}
+        
         
         
 	public void increaseSize(){
@@ -43,9 +65,10 @@ public class Players implements Serializable {
 	}
         
         
-        public void countHalve()
+        public int countHalve()
         {
             counterHalve++;
+            return counterHalve;
         }
         
         public void halveSizeFather()
