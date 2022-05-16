@@ -1,4 +1,4 @@
-package agario;
+ package agario;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -30,6 +30,14 @@ public class Players implements Serializable {
 		Player.height -=2;
 		velocity += 0.05;
 	}
+        
+        public void halveSize()
+        {
+            Player.width = Player.width / 2;
+            Player.height = Player.height / 2;
+            velocity = velocity * 2;
+        }
+                
 	public void moveRight(){
 		Player.x+=1;
 	}
