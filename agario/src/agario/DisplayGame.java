@@ -102,7 +102,7 @@ public class DisplayGame extends JPanel implements ActionListener{
                 vBot[i].start();
             }
                 
-            tClassifica = new ThreadClassifica(player1, vBot); // questo va modificato sulla base di come gestite i giocatori
+            tClassifica = new ThreadClassifica(player1, vBot, this); // questo va modificato sulla base di come gestite i giocatori
             tClassifica.start();
 	}	
 	public void setvPort(JViewport vPort) {
@@ -179,6 +179,7 @@ public class DisplayGame extends JPanel implements ActionListener{
 			menu.setPoint(pointPlayer1);
 			didBallIntersect();
 			printInfoBall(g2);
+                        printClassifica(g2);
 			whoWon();
                         g2.draw(Bordo);
 			g2.draw(outerArea);
@@ -234,9 +235,9 @@ public class DisplayGame extends JPanel implements ActionListener{
 		double a=TimeUnit.SECONDS.convert(System.nanoTime() - time, TimeUnit.NANOSECONDS);
 		Font font= new Font("arial",Font.BOLD,15);
 		g2.setFont(font);
-		g2.drawString("SPEED: "+new DecimalFormat("##.##").format(player1.getVelocity()),(int)(player1.getX()-950), (int)(player1.getY()-520));
-		g2.drawString("RADIUS OF BALL: "+Math.floor(player1.getPlayer().height),(int)(player1.getX()-950), (int)(player1.getY()-500));
-		g2.drawString("TIME: "+a, (int)(player1.getX()-950),  (int)(player1.getY()-480));
+		g2.drawString("SPEED: "+new DecimalFormat("##.##").format(player1.getVelocity()),(int)(player1.getX()-600), (int)(player1.getY()-330)); // 950 520
+		g2.drawString("RADIUS OF BALL: "+Math.floor(player1.getPlayer().height),(int)(player1.getX()-600), (int)(player1.getY()-300)); // 950 500
+		g2.drawString("TIME: "+a, (int)(player1.getX()-600),  (int)(player1.getY()-270)); // 950 480
 	}
 
 	@Override
@@ -307,6 +308,21 @@ public class DisplayGame extends JPanel implements ActionListener{
 	}
 	public void setPoison(Poisons poison) {
 		this.poison = poison;
+	}
+        
+        public void Repaint() {
+            repaint();
+        }
+        
+	public void printClassifica(Graphics2D g2){
+                double[] classifica = tClassifica.getClassifica();
+		g2.setColor(Color.ORANGE);
+		Font font= new Font("arial",Font.BOLD,15);
+		g2.setFont(font);
+                g2.drawString("CLASSIFICA: ",(int)(player1.getX()+500), (int)(player1.getY()-330));
+                for(int i=0; i < classifica.length; i++) {
+                    g2.drawString(new DecimalFormat("##.##").format(classifica[i]),(int)(player1.getX()+500), (int)(player1.getY()-300+i*30));
+                }
 	}
         
 }
