@@ -47,7 +47,7 @@ public class Menu implements MouseListener {
         
         Graphics2D g3=(Graphics2D)g2;
 	g3.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);               
-        g3.drawImage(logo, 1000, 1000, 5040, 5040, g2);
+        //g3.drawImage(logo, 1000, 1000, 5040, 5040, g2);
         
         g2.drawString("Good Game", f.getWidth() / 2 - 140, f.getHeight() / 2 - 50);
         

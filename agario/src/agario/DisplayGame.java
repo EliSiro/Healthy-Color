@@ -52,6 +52,9 @@ public class DisplayGame extends JPanel implements ActionListener{
         
         Players p;
         
+        private ThreadBot[] vBot;
+        private ThreadClassifica tClassifica;
+        
 	public static enum STATE{
 		MENU,
 		GAME,
@@ -92,7 +95,15 @@ public class DisplayGame extends JPanel implements ActionListener{
             } catch (IOException ex) {
                 Logger.getLogger(DisplayGame.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
+            vBot = new ThreadBot[10];
+            for(int i=0;i<10;i++){
+                vBot[i]=new ThreadBot();
+                vBot[i].start();
+            }
                 
+            tClassifica = new ThreadClassifica(player1, vBot); // questo va modificato sulla base di come gestite i giocatori
+            tClassifica.start();
 	}	
 	public void setvPort(JViewport vPort) {
 		this.vPort = vPort;

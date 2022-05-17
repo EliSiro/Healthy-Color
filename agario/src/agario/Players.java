@@ -144,4 +144,8 @@ public class Players implements Serializable {
 	public void setVelocity(double velocity) {
 		this.velocity = velocity;
 	}
+        
+        public double getSize() {
+            return Player.width;
+        }
 }
