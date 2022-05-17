@@ -134,7 +134,7 @@ public class DisplayGame extends JPanel implements ActionListener{
 			poison.drawPoisons(g2);
 			food.drawFood(g2);
 			player1.drawPlayerG2(g2);
-                        if(p.countHalve() == 1)
+                       /* if(p.countHalve() == 1)
                         {
                             SonPlayer1.drawPlayer(g2);
                         }
@@ -162,7 +162,7 @@ public class DisplayGame extends JPanel implements ActionListener{
                         if(p.countHalve() == 6)
                         {
                             SonPlayer6.drawPlayer(g2);
-                        }
+                        }*/
                         
 			pointPlayer1= new Point((int)(player1.getX()-player1.getPlayer().width-100),(int)(player1.getY()-player1.getPlayer().height-100));
 			menu.setPoint(pointPlayer1);

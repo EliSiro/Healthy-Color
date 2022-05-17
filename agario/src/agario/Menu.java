@@ -5,10 +5,15 @@ import java.awt.Frame;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
 import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
 public class Menu implements MouseListener { 
@@ -32,11 +37,18 @@ public class Menu implements MouseListener {
 
     public void render(Graphics2D g2) {
         Font font = new Font("calibri", Font.BOLD, 50);
-        g2.setFont(font);
-        logo = ImageIO.read(new File("C:\\Users\\Tommaso\\Desktop\\Principale\\Scuola_Superiori\\Tommy\\ANNO_2022\\Progetto_Tecnologie_Agar.Io_20.05.2022\\Healthy-Color\\agario\\src\\agario\\images\\Healthy_Color_Logo.png"));
+        g2.setFont(font); 
+        try {
+                logo = ImageIO.read(new File(".\\src\\agario\\images\\Healthy_Color_Logo.png"));
+            } catch (IOException ex) {
+                Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+            }
         g2.fillOval(f.getWidth() / 2 - 73, f.getHeight() / 2 - 250, 150, 150);
         
-        g2.setColor(Color.ORANGE);
+        Graphics2D g3=(Graphics2D)g2;
+	g3.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);               
+        g3.drawImage(logo, 1000, 1000, 5040, 5040, g2);
+        
         g2.drawString("Good Game", f.getWidth() / 2 - 140, f.getHeight() / 2 - 50);
         
         g2.setColor(Color.BLACK);
