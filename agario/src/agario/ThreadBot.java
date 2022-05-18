@@ -43,9 +43,9 @@ public class ThreadBot extends Thread{
         }*/
        do
        {
-           p.setX(p.getX()-1);
+           p.setX(p.getX()-100);
            try {
-               sleep(10000);
+               sleep(10);
            } catch (InterruptedException ex) {
                Logger.getLogger(ThreadBot.class.getName()).log(Level.SEVERE, null, ex);
            }

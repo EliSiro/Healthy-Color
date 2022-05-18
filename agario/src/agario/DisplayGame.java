@@ -152,7 +152,9 @@ public class DisplayGame extends JPanel implements ActionListener{
 			poison.drawPoisons(g2);
 			food.drawFood(g2);
 			player1.drawPlayerG2(g2);
-                        
+                        player2.drawPlayerG2(g2);
+                        player3.drawPlayerG2(g2);
+                        player4.drawPlayerG2(g2);
                        /* if(p.countHalve() == 1)
                         {
                             SonPlayer1.drawPlayer(g2);
