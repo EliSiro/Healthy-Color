@@ -23,18 +23,6 @@ public class main {
     public static void main(String[] args) throws IOException {
 
         JFrame frame = new JFrame("agar.io");
-        /*(JFrame f = new JFrame("stackoverflow") {
-            private Image backgroundImage = ImageIO.read(new File("sfondo.jpg"));
-            public void paint(Graphics g) {
-                super.paint(g);
-                g.drawImage(backgroundImage, 0, 0, null);
-            }
-        };*/
-
-        //JLabel background = new JLabel("");
-        //background.setIcon(new ImageIcon("C:\\Users\\ricca\\Documents\\GitHub\\Healthy-Color\\agario\\src\\agario\\images\\sfondo_ok.jpg"));
-        //background.setBounds(1000, 1000, 1920, 1080);
-        //frame.add(background);
         JScrollPane pane = new JScrollPane();
         JViewport vport = new JViewport();
         DisplayGame panel = new DisplayGame(frame);

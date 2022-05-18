@@ -15,17 +15,21 @@ import java.util.logging.Logger;
  */
 public class ThreadBot extends Thread{
     private double size;
+    private Players p;
     
-    ThreadBot(){
-        size=25;
+    ThreadBot(Players p1){
+        //size=25;
+        p = p1;
     }
     
     public void run(){
-        Random rn=new Random();//estraggo un numero random(0=+ , 1=-)
+       /* Random rn=new Random();//estraggo un numero random(0=+ , 1=-)
         int random;
         while(true){
             random=rn.nextInt(2);//0 incluso, 2 escluso
             if(random==0){
+                
+                
                 size++;
             }
             else{
@@ -36,7 +40,17 @@ public class ThreadBot extends Thread{
             } catch (InterruptedException ex) {
                 Logger.getLogger(ThreadBot.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
+        }*/
+       do
+       {
+           p.setX(p.getX()-1);
+           try {
+               sleep(10000);
+           } catch (InterruptedException ex) {
+               Logger.getLogger(ThreadBot.class.getName()).log(Level.SEVERE, null, ex);
+           }
+       } while(true);
+       
     }
     
     public double getSize() {

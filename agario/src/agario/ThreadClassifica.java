@@ -26,7 +26,7 @@ public class ThreadClassifica extends Thread {
     }
     
     public void run() {
-        int i;
+        /*int i;
         double temp;
         while (true) {
             synchronized(sizes) {
@@ -44,7 +44,7 @@ public class ThreadClassifica extends Thread {
                 }
             }
         }
-            }
+            }*/
         /*
         System.out.println("CLASSIFICA");
         for (int j = 0; j < sizes.length; j++) {
@@ -52,14 +52,15 @@ public class ThreadClassifica extends Thread {
         }
         System.out.println("");
         System.out.println("");
-        */
+        */ 
+        /*
         dg.Repaint();
             try {
                 sleep(500);
             } catch (InterruptedException ex) {
                 Logger.getLogger(ThreadClassifica.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
+        }*/
     }
     
     public double[] getClassifica() {

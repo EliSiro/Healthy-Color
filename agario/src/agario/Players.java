@@ -16,14 +16,24 @@ public class Players implements Serializable {
         private Ellipse2D.Double SonPlayer5;
         private Ellipse2D.Double SonPlayer6;
 	private Color playerColor;
-	private double velocity=5; //200005
+        public boolean isplayer = true;
+	private double velocity=25; //200005
 	Random random;
 	Players(){
 		random = new Random();
-		Player=new Ellipse2D.Double(random.nextInt(500)+3000, random.nextInt(500)+2000, 25, 25);
+		Player=new Ellipse2D.Double(random.nextInt(500)+3000, random.nextInt(500)+2000, 80, 80);
 		playerColor= new Color(random.nextInt(255),random.nextInt(255),random.nextInt(255));
 	}
         
+        public void muovi()
+        {
+            if(isplayer == false)
+            {
+                //setX(velocity);
+                ThreadBot b = new ThreadBot(this);
+                b.run();
+            }
+        }
         
 	public void drawPlayerG2(Graphics2D g2){
 		g2.setColor(playerColor);
@@ -129,6 +139,17 @@ public class Players implements Serializable {
 	public Ellipse2D.Double getPlayer() {
 		return Player;
 	}
+        
+        public void setX(double n)
+        {
+            Player.x = n;
+        }
+        
+        public void setY(double n)
+        {
+            Player.y = n;
+        }
+        
 	public double getX(){
 		return Player.x;
 	}

@@ -37,6 +37,8 @@ public class DisplayGame extends JPanel implements ActionListener{
 	public Players player1;
 	private JViewport vPort;
 	private Players player2;
+        private Players player3;
+        private Players player4;
         private ComandiAggiuntivi comandi;
 	private Foods food;
 	private long time;
@@ -72,7 +74,12 @@ public class DisplayGame extends JPanel implements ActionListener{
 		setFocusable(true);
 		requestFocusInWindow();
 		player1 = new Players();
-		player2 = new Players();    
+		player2 = new Players();   
+                player3 = new Players(); 
+                player4 = new Players(); 
+                player2.isplayer = false;
+                player3.isplayer = false;
+                player4.isplayer = false;
                 comandi = new ComandiAggiuntivi(this, player1, poison);
 		poison = new Poisons(numoffoods/10);
 		food= new Foods(numoffoods);
@@ -98,8 +105,8 @@ public class DisplayGame extends JPanel implements ActionListener{
             
             vBot = new ThreadBot[10];
             for(int i=0;i<10;i++){
-                vBot[i]=new ThreadBot();
-                vBot[i].start();
+                //vBot[i]=new ThreadBot();
+                //vBot[i].start();
             }
                 
             tClassifica = new ThreadClassifica(player1, vBot, this); // questo va modificato sulla base di come gestite i giocatori
@@ -145,6 +152,7 @@ public class DisplayGame extends JPanel implements ActionListener{
 			poison.drawPoisons(g2);
 			food.drawFood(g2);
 			player1.drawPlayerG2(g2);
+                        
                        /* if(p.countHalve() == 1)
                         {
                             SonPlayer1.drawPlayer(g2);
@@ -235,9 +243,9 @@ public class DisplayGame extends JPanel implements ActionListener{
 		double a=TimeUnit.SECONDS.convert(System.nanoTime() - time, TimeUnit.NANOSECONDS);
 		Font font= new Font("arial",Font.BOLD,15);
 		g2.setFont(font);
-		g2.drawString("SPEED: "+new DecimalFormat("##.##").format(player1.getVelocity()),(int)(player1.getX()-600), (int)(player1.getY()-330)); // 950 520
-		g2.drawString("RADIUS OF BALL: "+Math.floor(player1.getPlayer().height),(int)(player1.getX()-600), (int)(player1.getY()-300)); // 950 500
-		g2.drawString("TIME: "+a, (int)(player1.getX()-600),  (int)(player1.getY()-270)); // 950 480
+		g2.drawString("SPEED: "+new DecimalFormat("##.##").format(player1.getVelocity()),(int)(player1.getX()-940), (int)(player1.getY()-500)); // 950 520
+		g2.drawString("RADIUS OF BALL: "+Math.floor(player1.getPlayer().height),(int)(player1.getX()-940), (int)(player1.getY()-480)); // 950 500
+		g2.drawString("TIME: "+a, (int)(player1.getX()-940),  (int)(player1.getY()-460)); // 950 480
 	}
 
 	@Override
@@ -319,9 +327,9 @@ public class DisplayGame extends JPanel implements ActionListener{
 		g2.setColor(Color.ORANGE);
 		Font font= new Font("arial",Font.BOLD,15);
 		g2.setFont(font);
-                g2.drawString("CLASSIFICA: ",(int)(player1.getX()+500), (int)(player1.getY()-330));
+                g2.drawString("CLASSIFICA: ",(int)(player1.getX()+740), (int)(player1.getY()-500));
                 for(int i=0; i < classifica.length; i++) {
-                    g2.drawString(new DecimalFormat("##.##").format(classifica[i]),(int)(player1.getX()+500), (int)(player1.getY()-300+i*30));
+                    g2.drawString(new DecimalFormat("##.##").format(classifica[i]),(int)(player1.getX()+740), (int)(player1.getY()-470+i*30));
                 }
 	}
         
