@@ -64,8 +64,8 @@ public class Players implements Serializable {
         
         
 	public void increaseSize(){
-		Player.width += 1;
-		Player.height +=1;
+		Player.width += 10;
+		Player.height +=10;
 		velocity -= 0.03;
 	}
 	public void decreaseSize(){
