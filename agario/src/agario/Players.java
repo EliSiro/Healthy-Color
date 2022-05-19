@@ -17,7 +17,7 @@ public class Players implements Serializable {
         private Ellipse2D.Double SonPlayer6;
 	private Color playerColor;
         public boolean isplayer = true;
-	private double velocity=25; //200005
+	private double velocity=10; //200005
 	Random random;
 	Players(){
 		random = new Random();
@@ -29,9 +29,6 @@ public class Players implements Serializable {
         {
             if(isplayer == false)
             {
-                //setX(velocity);
-                ThreadBot b = new ThreadBot(this);
-                b.run();
             }
         }
         
@@ -64,8 +61,8 @@ public class Players implements Serializable {
         
         
 	public void increaseSize(){
-		Player.width += 10;
-		Player.height +=10;
+		Player.width += 1;
+		Player.height +=1;
 		velocity -= 0.03;
 	}
 	public void decreaseSize(){

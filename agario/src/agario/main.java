@@ -27,7 +27,7 @@ public class main {
         JViewport vport = new JViewport();
         DisplayGame panel = new DisplayGame(frame);
         Poisons poi = new Poisons(5);
-
+        
         panel.menu.setArgs(args);
         vport.add(panel);
         frame.setVisible(true);

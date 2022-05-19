@@ -39,6 +39,8 @@ public class DisplayGame extends JPanel implements ActionListener{
 	private Players player2;
         private Players player3;
         private Players player4;
+        private Players player5;
+        private Players player6;
         private ComandiAggiuntivi comandi;
 	private Foods food;
 	private long time;
@@ -77,9 +79,13 @@ public class DisplayGame extends JPanel implements ActionListener{
 		player2 = new Players();   
                 player3 = new Players(); 
                 player4 = new Players(); 
+                player5 = new Players(); 
+                player6 = new Players();
                 player2.isplayer = false;
                 player3.isplayer = false;
                 player4.isplayer = false;
+                player5.isplayer = false;
+                player6.isplayer = false;
                 comandi = new ComandiAggiuntivi(this, player1, poison);
 		poison = new Poisons(numoffoods/10);
 		food= new Foods(numoffoods);
@@ -155,6 +161,19 @@ public class DisplayGame extends JPanel implements ActionListener{
                         player2.drawPlayerG2(g2);
                         player3.drawPlayerG2(g2);
                         player4.drawPlayerG2(g2);
+                        player5.drawPlayerG2(g2);
+                        player6.drawPlayerG2(g2);
+                        ThreadBot b2=new ThreadBot(player2, 2, this);
+                        ThreadBot b3=new ThreadBot(player3, 3, this);
+                        ThreadBot b4=new ThreadBot(player4, 4, this);
+                        ThreadBot b5=new ThreadBot(player5, 5, this);
+                        ThreadBot b6=new ThreadBot(player6, 6, this);
+                        b2.start();
+                        b3.start();
+                        b4.start();
+                        b5.start();
+                        b6.start();
+                        
                        /* if(p.countHalve() == 1)
                         {
                             SonPlayer1.drawPlayer(g2);
@@ -324,6 +343,47 @@ public class DisplayGame extends JPanel implements ActionListener{
             repaint();
         }
         
+        public int[] getplayer(int s) {
+            int[] aa = new int[2];
+            if(s==2){
+            aa[1]=(int) player2.getX();
+            aa[2]=(int) player2.getY();
+            }else if(s==3){
+            aa[1]=(int) player3.getX();
+            aa[2]=(int) player3.getY();
+            
+            }else if(s==4){
+            aa[1]=(int) player4.getX();
+            aa[2]=(int) player4.getY();
+            
+            }else if(s==5){
+            aa[1]=(int) player5.getX();
+            aa[2]=(int) player5.getY();
+            
+            }else if(s==6){
+            aa[1]=(int) player6.getX();
+            aa[2]=(int) player6.getY();
+            }
+            return aa;
+        }
+        public int getsize (int s) {
+            int aa = 0;
+            if(s==2){
+            aa = (int) player2.getSize();
+            }else if(s==3){
+            aa = (int) player3.getSize();
+            
+            }else if(s==4){
+            aa = (int) player4.getSize();
+            
+            }else if(s==5){
+            aa = (int) player5.getSize();
+            
+            }else if(s==6){
+            aa = (int) player6.getSize();
+            }
+            return aa;
+        }
 	public void printClassifica(Graphics2D g2){
                 double[] classifica = tClassifica.getClassifica();
 		g2.setColor(Color.ORANGE);
