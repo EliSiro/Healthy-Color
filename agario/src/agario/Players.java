@@ -23,6 +23,8 @@ public class Players implements Serializable {
 		random = new Random();
 		Player=new Ellipse2D.Double(random.nextInt(500)+3000, random.nextInt(500)+2000, 80, 80);
 		playerColor= new Color(random.nextInt(255),random.nextInt(255),random.nextInt(255));
+                
+                food = new Ellipse2D.Double(p.Player+100);
 	}
         
         public void muovi()
@@ -87,7 +89,7 @@ public class Players implements Serializable {
             velocity = velocity * 2;
         }
         
-        public void halveSizeSon()
+        /*public void halveSizeSon()
         {
             if(counterHalve == 0)
             {
@@ -126,7 +128,7 @@ public class Players implements Serializable {
             }
             
         }
-        
+        */
         
         
         

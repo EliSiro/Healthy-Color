@@ -26,7 +26,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class DisplayGame extends JPanel implements ActionListener{
-        // servono un array/list di giocatori controllati dalla CPU (= ogni gioatore deve essere un thread)
+        // servono un array/list di giocatori controllati dalla CPU (= ogni gioatore deve essere un thread) 
 	private Rectangle outerArea;
         private Rectangle Bordo;
 	public static int WIDTH=1920;
@@ -129,25 +129,6 @@ public class DisplayGame extends JPanel implements ActionListener{
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);               
                 g2.drawImage(background, 1000, 1000, 5040, 5040, this);
                 
-                //G3
-                Graphics2D g3=(Graphics2D)g;
-		g3.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);               
-                g3.drawImage(background, 1000, 1000, 5040, 5040, this);
-                
-                //G4
-                Graphics2D g4=(Graphics2D)g;
-		g4.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);               
-                g4.drawImage(background, 1000, 1000, 5040, 5040, this);
-                
-                //G5
-                Graphics2D g5=(Graphics2D)g;
-		g5.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);               
-                g5.drawImage(background, 1000, 1000, 5040, 5040, this);
-                
-                //G6
-                Graphics2D g6=(Graphics2D)g;
-		g6.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);               
-                g6.drawImage(background, 1000, 1000, 5040, 5040, this);
                 
                 
 		//setBackground(Color.GRAY);

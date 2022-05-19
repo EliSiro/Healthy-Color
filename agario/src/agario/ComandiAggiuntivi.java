@@ -18,7 +18,7 @@ public class ComandiAggiuntivi implements KeyListener{
     Poisons poison;
     public ComandiAggiuntivi(DisplayGame g,Players p,Poisons poison) {
         this.g = g;
-        this.p=p;
+        this.p = p;
         this.poison=poison;
     }
 
@@ -42,8 +42,8 @@ public class ComandiAggiuntivi implements KeyListener{
         }
         if (e.getKeyCode() == KeyEvent.VK_W)// se premo w
         {
-                                p.decreaseSize();
-		
+            p.decreaseSize();
+            p.
         }
     }
 
