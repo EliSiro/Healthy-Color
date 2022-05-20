@@ -115,11 +115,16 @@ public class DisplayGame extends JPanel implements ActionListener {
             Logger.getLogger(DisplayGame.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        vBot = new ThreadBot[10];
-        for (int i = 0; i < 10; i++) {
+        vBot = new ThreadBot[5];
+        vBot[0] = b2;
+        vBot[1] = b3;
+        vBot[2] = b4;
+        vBot[3] = b5;
+        vBot[4] = b6;
+        /*for (int i = 0; i < 10; i++) {
             //vBot[i]=new ThreadBot();
             //vBot[i].start();
-        }
+        }*/
 
         tClassifica = new ThreadClassifica(player1, vBot, this); // questo va modificato sulla base di come gestite i giocatori
         tClassifica.start();
@@ -304,9 +309,15 @@ public class DisplayGame extends JPanel implements ActionListener {
         double a = TimeUnit.SECONDS.convert(System.nanoTime() - time, TimeUnit.NANOSECONDS);
         Font font = new Font("arial", Font.BOLD, 15);
         g2.setFont(font);
+        /*
         g2.drawString("SPEED: " + new DecimalFormat("##.##").format(player1.getVelocity()), (int) (player1.getX() - 940 + (int) player1.getPlayer().height / 2), (int) (player1.getY() - 500 + (int) player1.getPlayer().height / 2)); // 950 520
         g2.drawString("RADIUS OF BALL: " + Math.floor(player1.getPlayer().height), (int) (player1.getX() - 940 + (int) player1.getPlayer().height / 2), (int) (player1.getY() - 480 + (int) player1.getPlayer().height / 2)); // 950 500
         g2.drawString("TIME: " + a, (int) (player1.getX() - 940 + (int) player1.getPlayer().height / 2), (int) (player1.getY() - 460 + (int) player1.getPlayer().height / 2)); // 950 480
+        */
+        g2.drawString("SPEED: " + new DecimalFormat("##.##").format(player1.getVelocity()), (int) (player1.getX() - 600 + (int) player1.getPlayer().height / 2), (int) (player1.getY() - 350 + (int) player1.getPlayer().height / 2)); // 950 520
+        g2.drawString("RADIUS OF BALL: " + Math.floor(player1.getPlayer().height), (int) (player1.getX() - 600 + (int) player1.getPlayer().height / 2), (int) (player1.getY() - 330 + (int) player1.getPlayer().height / 2)); // 950 500
+        g2.drawString("TIME: " + a, (int) (player1.getX() - 600 + (int) player1.getPlayer().height / 2), (int) (player1.getY() - 310 + (int) player1.getPlayer().height / 2)); // 950 480
+        
     }
 
     @Override
@@ -431,12 +442,19 @@ public class DisplayGame extends JPanel implements ActionListener {
 
     public void printClassifica(Graphics2D g2) {
         double[] classifica = tClassifica.getClassifica();
+        int[] id = tClassifica.getIdentifiers();
         g2.setColor(Color.ORANGE);
         Font font = new Font("arial", Font.BOLD, 15);
         g2.setFont(font);
+        /*
         g2.drawString("CLASSIFICA: ", (int) (player1.getX() + 740 + player1.getPlayer().height / 2), (int) (player1.getY() - 490 + player1.getPlayer().height / 2));
         for (int i = 0; i < classifica.length; i++) {
-            g2.drawString(new DecimalFormat("##.##").format(classifica[i]), (int) (player1.getX() + 740 + player1.getPlayer().height / 2), (int) (player1.getY() - 470 + i * 30 + player1.getPlayer().height / 2));
+            g2.drawString("Player " + id[i] + " = " + classifica[i], (int) (player1.getX() + 740 + player1.getPlayer().height / 2), (int) (player1.getY() - 470 + i * 30 + player1.getPlayer().height / 2));
+        }
+        */
+        g2.drawString("CLASSIFICA: ", (int) (player1.getX() + 500 + player1.getPlayer().height / 2), (int) (player1.getY() - 350 + player1.getPlayer().height / 2));
+        for (int i = 0; i < classifica.length; i++) {
+            g2.drawString("Player " + id[i] + " = " + classifica[i], (int) (player1.getX() + 500 + player1.getPlayer().height / 2), (int) (player1.getY() - 320 + i * 30 + player1.getPlayer().height / 2));
         }
     }
 

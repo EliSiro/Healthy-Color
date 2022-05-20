@@ -17,23 +17,28 @@ public class ThreadClassifica extends Thread {
     private Players p;
     private ThreadBot[] vBot;
     private double[] sizes;
+    private int[] id;
     private DisplayGame dg;
 
     public ThreadClassifica(Players p, ThreadBot[] vBot, DisplayGame dg) {
         this.p = p;
         this.vBot = vBot;
         sizes = new double[6];//vBot.length + 1
+        id = new int[6];
         this.dg = dg;
     }
 
     public void run() {
         int i=0;
         double temp;
+        int temp2;
         while (true) {
-            synchronized (sizes) {
+            synchronized (this) {
                 sizes[i] = p.getSize();
+                id[i] = 1;
                 for (i = 0; i < sizes.length - 1; i++) {
                     sizes[i] = vBot[i].getSize();
+                    id[i] = vBot[i].getIdentifier();
                 }
                 
 
@@ -43,17 +48,21 @@ public class ThreadClassifica extends Thread {
                             temp = sizes[j];
                             sizes[j] = sizes[k];
                             sizes[k] = temp;
+                            temp2 = id[j];
+                            id[j] = id[k];
+                            id[k] = temp2;
                         }
                     }
                 }
             }
-
+            /*
             System.out.println("CLASSIFICA");
             for (int j = 0; j < sizes.length; j++) {
                 System.out.println(sizes[j]);
             }
             System.out.println("");
             System.out.println("");
+            */
 
             dg.Repaint();
             try {
@@ -64,10 +73,12 @@ public class ThreadClassifica extends Thread {
         }
     }
 
-    public double[] getClassifica() {
-        synchronized (sizes) {
-            return sizes;
-        }
+    public synchronized double[] getClassifica() {
+        return sizes;
+    }
+    
+    public synchronized int[] getIdentifiers() {
+        return id;
     }
 
 }

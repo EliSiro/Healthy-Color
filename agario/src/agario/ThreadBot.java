@@ -108,5 +108,9 @@ public class ThreadBot extends Thread {
     public double getSize() {
         return size;
     }
+    
+    public int getIdentifier() {
+        return id;
+    }
 
 }
