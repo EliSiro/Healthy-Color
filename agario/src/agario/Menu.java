@@ -31,6 +31,7 @@ public class Menu implements MouseListener {
     public Menu(DisplayGame displayGame, Frame f) {
         this.displayGame = displayGame;
         this.f = f;
+        
     }
 
     public void setArgs(String[] A) {

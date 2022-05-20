@@ -82,7 +82,18 @@ public class DisplayGame extends JPanel implements ActionListener {
         player4 = new Players();
         player5 = new Players();
         player6 = new Players();
-        comandi = new ComandiAggiuntivi(this, player1, poison);
+        ThreadBot b2 = new ThreadBot(player2, 2, this);
+        ThreadBot b3 = new ThreadBot(player3, 3, this);
+        ThreadBot b4 = new ThreadBot(player4, 4, this);
+        ThreadBot b5 = new ThreadBot(player5, 5, this);
+        ThreadBot b6 = new ThreadBot(player6, 6, this);
+        b3.start();
+        b4.start();
+        b5.start();
+        b6.start();
+        b2.start();
+        comandi = new ComandiAggiuntivi(this, player1, poison, food);
+        f.addKeyListener(comandi);
         poison = new Poisons(numoffoods / 10);
         food = new Foods(numoffoods);
         tf = new ThreadFood(food);
@@ -117,7 +128,6 @@ public class DisplayGame extends JPanel implements ActionListener {
     public void setvPort(JViewport vPort) {
         this.vPort = vPort;
     }
-
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         //G2
@@ -137,17 +147,10 @@ public class DisplayGame extends JPanel implements ActionListener {
             player4.drawPlayerG2(g2);
             player5.drawPlayerG2(g2);
             player6.drawPlayerG2(g2);
-            ThreadBot b2 = new ThreadBot(player2, 2, this);
-            ThreadBot b3 = new ThreadBot(player3, 3, this);
-            ThreadBot b4 = new ThreadBot(player4, 4, this);
-            ThreadBot b5 = new ThreadBot(player5, 5, this);
-            ThreadBot b6 = new ThreadBot(player6, 6, this);
-            b2.start();
-            b3.start();
-            b4.start();
-            b5.start();
-            b6.start();
-
+            
+            if(player1.getSize()<=0){
+            state = STATE.LOSE;
+            }
             /* if(p.countHalve() == 1)
                         {
                             SonPlayer1.drawPlayer(g2);
@@ -198,6 +201,14 @@ public class DisplayGame extends JPanel implements ActionListener {
             state = STATE.WIN;
         } else if (player1.getPlayer().height < player2.getPlayer().height && player1.getPlayer().getBounds().intersects(player2.getPlayer().getBounds())) {
             state = STATE.LOSE;
+        } else if (player1.getPlayer().height < player3.getPlayer().height && player1.getPlayer().getBounds().intersects(player3.getPlayer().getBounds())) {
+            state = STATE.LOSE;
+        } else if (player1.getPlayer().height < player4.getPlayer().height && player1.getPlayer().getBounds().intersects(player4.getPlayer().getBounds())) {
+            state = STATE.LOSE;
+        } else if (player1.getPlayer().height < player5.getPlayer().height && player1.getPlayer().getBounds().intersects(player5.getPlayer().getBounds())) {
+            state = STATE.LOSE;
+        } else if (player1.getPlayer().height < player6.getPlayer().height && player1.getPlayer().getBounds().intersects(player6.getPlayer().getBounds())) {
+            state = STATE.LOSE;
         }
     }
 
@@ -228,6 +239,62 @@ public class DisplayGame extends JPanel implements ActionListener {
             if (poison.getPoisons()[i] != null && player2.getPlayer().getBounds().intersects(poison.getPoisons()[i].getBounds())) {
                 poison.getPoisons()[i] = null;
                 player2.decreaseSize();
+            }
+        }
+        for (int i = 0; i < food.getFoods().length; i++) {
+            if (food.getFoods()[i] != null && player3.getPlayer().getBounds().intersects(food.getFoods()[i].getBounds())) {
+                //food.getFoods()[i] = null;
+                food.setFoodElement(i, null);
+                food.addNoFoodPos(i);
+                player3.increaseSize();
+            }
+        }
+        for (int i = 0; i < food.getFoods().length; i++) {
+            if (food.getFoods()[i] != null && player4.getPlayer().getBounds().intersects(food.getFoods()[i].getBounds())) {
+                food.getFoods()[i] = null;
+                player4.increaseSize();
+            }
+        }
+        for (int i = 0; i < poison.getPoisons().length; i++) {
+            if (poison.getPoisons()[i] != null && player3.getPlayer().getBounds().intersects(poison.getPoisons()[i].getBounds())) {
+                //poison.getPoisons()[i]=null;
+                poison.setPoisonElement(i, null);
+                poison.addNoPoisonPos(i);
+                player3.decreaseSize();
+            }
+        }
+        for (int i = 0; i < poison.getPoisons().length; i++) {
+            if (poison.getPoisons()[i] != null && player4.getPlayer().getBounds().intersects(poison.getPoisons()[i].getBounds())) {
+                poison.getPoisons()[i] = null;
+                player4.decreaseSize();
+            }
+        }
+        for (int i = 0; i < food.getFoods().length; i++) {
+            if (food.getFoods()[i] != null && player5.getPlayer().getBounds().intersects(food.getFoods()[i].getBounds())) {
+                food.getFoods()[i] = null;
+                player5.increaseSize();
+            }
+        }
+        for (int i = 0; i < poison.getPoisons().length; i++) {
+            if (poison.getPoisons()[i] != null && player5.getPlayer().getBounds().intersects(poison.getPoisons()[i].getBounds())) {
+                //poison.getPoisons()[i]=null;
+                poison.setPoisonElement(i, null);
+                poison.addNoPoisonPos(i);
+                player5.decreaseSize();
+            }
+        }
+        for (int i = 0; i < food.getFoods().length; i++) {
+            if (food.getFoods()[i] != null && player6.getPlayer().getBounds().intersects(food.getFoods()[i].getBounds())) {
+                food.getFoods()[i] = null;
+                player6.increaseSize();
+            }
+        }
+        for (int i = 0; i < poison.getPoisons().length; i++) {
+            if (poison.getPoisons()[i] != null && player6.getPlayer().getBounds().intersects(poison.getPoisons()[i].getBounds())) {
+                //poison.getPoisons()[i]=null;
+                poison.setPoisonElement(i, null);
+                poison.addNoPoisonPos(i);
+                player6.decreaseSize();
             }
         }
     }

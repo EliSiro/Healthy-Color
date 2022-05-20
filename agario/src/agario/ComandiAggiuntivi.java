@@ -6,6 +6,7 @@ package agario;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.geom.Ellipse2D;
 
 /**
  *
@@ -16,35 +17,36 @@ public class ComandiAggiuntivi implements KeyListener {
     DisplayGame g;
     Players p;
     Poisons poison;
-
-    public ComandiAggiuntivi(DisplayGame g, Players p, Poisons poison) {
+    Foods f;
+    public ComandiAggiuntivi(DisplayGame g, Players p, Poisons poison, Foods f) {
         this.g = g;
         this.p = p;
         this.poison = poison;
+        this.f=f;
     }
 
     @Override
     public void keyPressed(KeyEvent e) { // spazio per dividersi e w per dare una parte della tua massa
-        System.out.println(e);
         /*if (e.getKeyCode() == KeyEvent.VK_SPACE) //se premo spazio
         {
             p.halveSizeFather();
             p.countHalve();
-            p.halveSizeSon();
                                 
-        }
+        }*/
         if (e.getKeyCode() == KeyEvent.VK_W)// se premo w
         {
-        }*/
+            if(p.getSize()-30>10){
+            p.decreaseSizew();
+            f.w((int)p.getX(), (int)p.getY());
+            }
+        }
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

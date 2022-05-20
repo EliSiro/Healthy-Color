@@ -22,19 +22,20 @@ public class ThreadClassifica extends Thread {
     public ThreadClassifica(Players p, ThreadBot[] vBot, DisplayGame dg) {
         this.p = p;
         this.vBot = vBot;
-        sizes = new double[vBot.length + 1];
+        sizes = new double[6];//vBot.length + 1
         this.dg = dg;
     }
 
     public void run() {
-       /* int i;
+        int i=0;
         double temp;
         while (true) {
             synchronized (sizes) {
+                sizes[i] = p.getSize();
                 for (i = 0; i < sizes.length - 1; i++) {
                     sizes[i] = vBot[i].getSize();
                 }
-                sizes[i] = p.getSize();
+                
 
                 for (int j = 0; j < sizes.length - 1; j++) {
                     for (int k = j + 1; k < sizes.length; k++) {
@@ -60,7 +61,7 @@ public class ThreadClassifica extends Thread {
             } catch (InterruptedException ex) {
                 Logger.getLogger(ThreadClassifica.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }*/
+        }
     }
 
     public double[] getClassifica() {

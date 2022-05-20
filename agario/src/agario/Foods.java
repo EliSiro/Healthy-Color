@@ -13,6 +13,7 @@ public class Foods implements Serializable {
         private Ellipse2D.Double foods[];
 	private Color foodColors[];
         private ArrayList<Integer> noFoodPos;
+        Graphics2D g2;
 	
 	Foods(int numoffoods){
 		foods = new Ellipse2D.Double[numoffoods];
@@ -32,6 +33,7 @@ public class Foods implements Serializable {
 
 	}
 	public void drawFood(Graphics2D g2){
+            this.g2 = g2;
 
 		for (int i = 0; i < foods.length; i++) {
 			if(foods[i]!=null){
@@ -40,6 +42,22 @@ public class Foods implements Serializable {
 			}
 		}
 	}
+        public void w(int x, int y){
+        foods[foods.length+1]=new Ellipse2D.Double(x-300, y-300, 30, 30);
+        g2.setColor(foodColors[foods.length]);
+        g2.fill(foods[foods.length]);
+        
+        
+        
+        }
+        
+        public void drawFoodw(Graphics2D g2){
+			if(foods[foods.length]!=null){
+			g2.setColor(foodColors[foods.length]);
+			g2.fill(foods[foods.length]);
+                        }
+	}
+        
 	public void initializeFoods(){
 		for (int i = 0; i < foods.length; i++) {
 			foods[i]=new Ellipse2D.Double((int)(Math.random()*(6000-1000+1)+1000), (int)(Math.random()*(6000-1000+1)+1000), 9.3, 9.3);

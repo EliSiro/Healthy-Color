@@ -64,6 +64,11 @@ public class Players implements Serializable {
         Player.height -= 2;
         velocity += 0.05;
     }
+    public void decreaseSizew(){
+        Player.width -= 30;
+        Player.height -= 30;
+        velocity += 0.5;
+    }
 
     public int countHalve() {
         counterHalve++;

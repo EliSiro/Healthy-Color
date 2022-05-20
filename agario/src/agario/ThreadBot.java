@@ -44,9 +44,9 @@ public class ThreadBot extends Thread {
                     if (Math.sqrt((pos[1] - (int) p.getX()) * (pos[1] - (int) p.getX()) + (pos[2] - (int) p.getY()) * (pos[2] - (int) p.getY())) < dd) {
                         if (c.getsize(i) > p.getSize()) {
                             try {
-                                sleep(10000);
+                                sleep(1000);
                                 posizionenemx = pos[1] - (int) p.getX();
-                                posizionenemy = pos[1] - (int) p.getX();
+                                posizionenemy = pos[2] - (int) p.getY();
                                 if (posizionenemx < 0) {
                                     p.setX(p.getX() - 10);
                                     p.setY(p.getY() - 10);
@@ -60,9 +60,9 @@ public class ThreadBot extends Thread {
 
                         } else {
                             try {
-                                sleep(10000);
+                                sleep(1000);
                                 posizionenemx = pos[1] - (int) p.getX();
-                                posizionenemy = pos[1] - (int) p.getX();
+                                posizionenemy = pos[2] - (int) p.getY();
                                 if (posizionenemx < 0) {
                                     p.setX(p.getX() + 10);
                                     p.setY(p.getY() + 10);
@@ -77,7 +77,7 @@ public class ThreadBot extends Thread {
                         }
                     } else {
                         try {
-                            sleep(10000);
+                            sleep(1000);
                         } catch (InterruptedException ex) {
                             Logger.getLogger(ThreadBot.class.getName()).log(Level.SEVERE, null, ex);
                         }
