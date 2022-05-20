@@ -228,7 +228,8 @@ public class DisplayGame extends JPanel implements ActionListener {
         }
         for (int i = 0; i < food.getFoods().length; i++) {
             if (food.getFoods()[i] != null && player2.getPlayer().getBounds().intersects(food.getFoods()[i].getBounds())) {
-                food.getFoods()[i] = null;
+                food.setFoodElement(i, null);
+                food.addNoFoodPos(i);
                 player2.increaseSize();
             }
         }
@@ -256,7 +257,8 @@ public class DisplayGame extends JPanel implements ActionListener {
         }
         for (int i = 0; i < food.getFoods().length; i++) {
             if (food.getFoods()[i] != null && player4.getPlayer().getBounds().intersects(food.getFoods()[i].getBounds())) {
-                food.getFoods()[i] = null;
+                food.setFoodElement(i, null);
+                food.addNoFoodPos(i);
                 player4.increaseSize();
             }
         }
@@ -276,7 +278,8 @@ public class DisplayGame extends JPanel implements ActionListener {
         }
         for (int i = 0; i < food.getFoods().length; i++) {
             if (food.getFoods()[i] != null && player5.getPlayer().getBounds().intersects(food.getFoods()[i].getBounds())) {
-                food.getFoods()[i] = null;
+                food.setFoodElement(i, null);
+                food.addNoFoodPos(i);
                 player5.increaseSize();
             }
         }
@@ -290,7 +293,8 @@ public class DisplayGame extends JPanel implements ActionListener {
         }
         for (int i = 0; i < food.getFoods().length; i++) {
             if (food.getFoods()[i] != null && player6.getPlayer().getBounds().intersects(food.getFoods()[i].getBounds())) {
-                food.getFoods()[i] = null;
+                food.setFoodElement(i, null);
+                food.addNoFoodPos(i);
                 player6.increaseSize();
             }
         }
