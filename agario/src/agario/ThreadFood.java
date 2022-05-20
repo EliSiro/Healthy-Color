@@ -15,28 +15,29 @@ import java.util.logging.Logger;
  * @author ricca
  */
 public class ThreadFood extends Thread {
+
     private Foods food;
-    
+
     ThreadFood(Foods food) {
         this.food = food;
     }
-    
+
     public void run() {
         // ottenute le posizioni in cui manca cibo, ripristina quella posizione con un cibo piazzato in maniera random
-        Random rn=new Random();
-        int pos=-1;
-        Ellipse2D.Double cibo=null;
+        Random rn = new Random();
+        int pos = -1;
+        Ellipse2D.Double cibo = null;
         //int cont = 0;
-        while(true) {
-            pos=food.getFirstNoFoodPos();
-            if(pos != -1) {
-                cibo = new Ellipse2D.Double((int)(Math.random()*(6000-1000+1)+1000), (int)(Math.random()*(6000-1000+1)+1000), 9.3, 9.3); // cibo random
+        while (true) {
+            pos = food.getFirstNoFoodPos();
+            if (pos != -1) {
+                cibo = new Ellipse2D.Double((int) (Math.random() * (6000 - 1000 + 1) + 1000), (int) (Math.random() * (6000 - 1000 + 1) + 1000), 9.3, 9.3); // cibo random
                 //cibo = new Ellipse2D.Double(food.getX(), food.getY(), 9.3, 9.3); // cibo dove era prima
                 food.setFoodElement(pos, cibo);
                 //System.out.println("Ripristinato"+cont);
                 //cont++;
             }
-            
+
             try {
                 sleep(50);
             } catch (InterruptedException ex) {

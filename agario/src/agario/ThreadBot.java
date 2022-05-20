@@ -23,7 +23,7 @@ public class ThreadBot extends Thread {
     int yy = 0;
     int id = 0;
     int N = 6;
-    int pos[] = new int[2];
+    int pos[] = new int[3];
     int dd = 0;
 
     ThreadBot(Players p1, int id, DisplayGame c) {
@@ -33,64 +33,78 @@ public class ThreadBot extends Thread {
         this.c = c;
     }
 
-    public void run() {
+    public void run() { // non legge gli sleep non capisco il perche
         int posizionenemx = 0;
         int posizionenemy = 0;
         while (true) {
-            try {
-                Thread.sleep(1000);
-                xx = (int) (Math.random() * (20 - (-20) + 1) - 20);
-                yy = (int) (Math.random() * (20 - (-20) + 1) - 20);
-                p.setX(p.getX() - xx);
-                p.setY(p.getY() - yy);
-
-            } catch (InterruptedException ex) {
-                Logger.getLogger(ThreadBot.class.getName()).log(Level.SEVERE, null, ex);
-            }
             for (int i = 2; i <= N; i++) {
                 if (id != i) {
                     dd = (int) p.getSize() * 3;
                     pos = c.getplayer(i);
                     if (Math.sqrt((pos[1] - (int) p.getX()) * (pos[1] - (int) p.getX()) + (pos[2] - (int) p.getY()) * (pos[2] - (int) p.getY())) < dd) {
                         if (c.getsize(i) > p.getSize()) {
-                            posizionenemx = pos[1] - (int) p.getX();
-                            posizionenemy = pos[1] - (int) p.getX();
-                            if (posizionenemx < 0) {
-                                p.setX(p.getX() - 10);
-                                p.setY(p.getY() - 10);
+                            try {
+                                sleep(1000);
+                                posizionenemx = pos[1] - (int) p.getX();
+                                posizionenemy = pos[1] - (int) p.getX();
+                                if (posizionenemx < 0) {
+                                    p.setX(p.getX() - 10);
+                                    p.setY(p.getY() - 10);
+                                } else {
+                                    p.setX(p.getX() + 10);
+                                    p.setY(p.getY() + 10);
+                                }
+                            } catch (InterruptedException ex) {
+                                Logger.getLogger(ThreadBot.class.getName()).log(Level.SEVERE, null, ex);
                             }
+
                         } else {
-                            posizionenemx = pos[1] - (int) p.getX();
-                            posizionenemy = pos[1] - (int) p.getX();
-                            if (posizionenemx < 0) {
-                                p.setX(p.getX() + 10);
-                                p.setY(p.getY() + 10);
+                            try {
+                                sleep(1000);
+                                posizionenemx = pos[1] - (int) p.getX();
+                                posizionenemy = pos[1] - (int) p.getX();
+                                if (posizionenemx < 0) {
+                                    p.setX(p.getX() + 10);
+                                    p.setY(p.getY() + 10);
+                                } else {
+                                    p.setX(p.getX() - 10);
+                                    p.setY(p.getY() - 10);
+                                }
+                            } catch (InterruptedException ex) {
+                                Logger.getLogger(ThreadBot.class.getName()).log(Level.SEVERE, null, ex);
                             }
+
                         }
+                    } else {
+                        try {
+                            sleep(1000);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(ThreadBot.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        xx = (int) (Math.random() * (10 - (-10) + 1) - 10);
+                        yy = (int) (Math.random() * (10 - (-10) + 1) - 10);
+                        p.setX(p.getX() - xx);
+                        p.setY(p.getY() - yy);
                     }
                 }
+                if (p.getX() >= 6000) {
+                    p.getPlayer().x = 5998;
+                }
+                if (p.getX() <= 1000) {
+                    p.getPlayer().x = 1002;
+                }
+                if (p.getY() >= 6000) {
+                    p.getPlayer().y = 5998;
+                }
+                if (p.getY() <= 1000) {
+                    p.getPlayer().y = 1002;
+                }
+                size = p.getSize();
             }
+
         }
     }
 
-    /* Random rn=new Random();//estraggo un numero random(0=+ , 1=-)
-        int random;
-        while(true){
-            random=rn.nextInt(2);//0 incluso, 2 escluso
-            if(random==0){
-                
-                
-                size++;
-            }
-            else{
-                size--;
-            }
-            try {
-                sleep(1000);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(ThreadBot.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }*/
     public double getSize() {
         return size;
     }

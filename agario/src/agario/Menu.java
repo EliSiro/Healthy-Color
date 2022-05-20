@@ -1,4 +1,5 @@
 package agario;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Frame;
@@ -16,7 +17,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
-public class Menu implements MouseListener { 
+public class Menu implements MouseListener {
+
     private Rectangle playButton = new Rectangle(DisplayGame.WIDTH / 2 - 50, DisplayGame.HEIGHT / 2, 100, 50);
     private Rectangle quitButton = new Rectangle(DisplayGame.WIDTH / 2 - 50, DisplayGame.HEIGHT / 2 + 100, 100, 50);
     private boolean enabled = true;
@@ -37,24 +39,24 @@ public class Menu implements MouseListener {
 
     public void render(Graphics2D g2) {
         Font font = new Font("calibri", Font.BOLD, 50);
-        g2.setFont(font); 
+        g2.setFont(font);
         try {
-                logo = ImageIO.read(new File(".\\src\\agario\\images\\Healthy_Color_Logo.png"));
-            } catch (IOException ex) {
-                Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            logo = ImageIO.read(new File(".\\src\\agario\\images\\Healthy_Color_Logo.png"));
+        } catch (IOException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
         g2.fillOval(f.getWidth() / 2 - 73, f.getHeight() / 2 - 250, 150, 150);
-        
-        Graphics2D g3=(Graphics2D)g2;
-	g3.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);               
+
+        Graphics2D g3 = (Graphics2D) g2;
+        g3.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         //g3.drawImage(logo, 1000, 1000, 5040, 5040, g2);
-        
+
         g2.drawString("Good Game", f.getWidth() / 2 - 140, f.getHeight() / 2 - 50);
-        
+
         g2.setColor(Color.BLACK);
         playButton = new Rectangle(f.getWidth() / 2 - 50, f.getHeight() / 2, 100, 50);
         quitButton = new Rectangle(f.getWidth() / 2 - 50, f.getHeight() / 2 + 100, 100, 50);
-        g2.drawString("Play", playButton.x, playButton.y + 40);         
+        g2.drawString("Play", playButton.x, playButton.y + 40);
         g2.drawString("Quit", quitButton.x, quitButton.y + 40);
     }
 

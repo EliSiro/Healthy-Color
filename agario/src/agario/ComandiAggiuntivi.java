@@ -11,45 +11,40 @@ import java.awt.event.KeyListener;
  *
  * @author Sucone
  */
-public class ComandiAggiuntivi implements KeyListener{
+public class ComandiAggiuntivi implements KeyListener {
 
     DisplayGame g;
     Players p;
     Poisons poison;
-    public ComandiAggiuntivi(DisplayGame g,Players p,Poisons poison) {
+
+    public ComandiAggiuntivi(DisplayGame g, Players p, Poisons poison) {
         this.g = g;
         this.p = p;
-        this.poison=poison;
-    }
-
-    
-    
-    @Override
-    public void keyTyped(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.poison = poison;
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {
+    public void keyPressed(KeyEvent e) { // spazio per dividersi e w per dare una parte della tua massa
         System.out.println(e);
-        if (e.getKeyCode() == KeyEvent.VK_SPACE) //se premo spazio
+        /*if (e.getKeyCode() == KeyEvent.VK_SPACE) //se premo spazio
         {
             p.halveSizeFather();
             p.countHalve();
             p.halveSizeSon();
-            
-                    
+                                
         }
         if (e.getKeyCode() == KeyEvent.VK_W)// se premo w
         {
-            p.decreaseSize();
-            p.
-        }
+        }*/
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
 }

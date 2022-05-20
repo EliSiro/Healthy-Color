@@ -16,28 +16,29 @@ import java.util.logging.Logger;
  * @author ricca
  */
 public class ThreadPoison extends Thread {
+
     private Poisons poison;
-    
+
     ThreadPoison(Poisons poison) {
         this.poison = poison;
     }
-    
+
     public void run() {
         // ottenute le posizioni in cui manca cibo, ripristina quella posizione con un cibo piazzato in maniera random
-        Random rn=new Random();
-        int pos=-1;
-        Ellipse2D.Double ps=null;
+        Random rn = new Random();
+        int pos = -1;
+        Ellipse2D.Double ps = null;
         //int cont = 0;
-        while(true) {
-            pos=poison.getFirstNoPoisonPos();
-            if(pos != -1) {
-                ps = new Ellipse2D.Double((int)(Math.random()*(6000-1000+1)+1000), (int)(Math.random()*(6000-1000+1)+1000), 20, 20); // veleno random
+        while (true) {
+            pos = poison.getFirstNoPoisonPos();
+            if (pos != -1) {
+                ps = new Ellipse2D.Double((int) (Math.random() * (6000 - 1000 + 1) + 1000), (int) (Math.random() * (6000 - 1000 + 1) + 1000), 20, 20); // veleno random
                 //ps = new Ellipse2D.Double(poison.getX(), poison.getY(), 40, 40); // veleno dove era prima
                 poison.setPoisonElement(pos, ps);
                 //System.out.println("Ripristinato"+cont);
                 //cont++;
             }
-            
+
             try {
                 sleep(50);
             } catch (InterruptedException ex) {
