@@ -1,3 +1,15 @@
+/**
+ * @author  Zonca Tommaso
+ * @author Pirovano Yuri
+ * @author Lettiero Riccardo
+ * @version 0.1
+ * @file DisplayGame.java
+ *
+ * @brief File per la visualizzazione a video
+ *
+ */
+
+
 package agario;
 
 import java.awt.Color;
@@ -25,6 +37,14 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+
+/**
+ * @class DisplayGame.java
+ *
+ * @brief Costruttore Default con estenzione JPanel e implementazione a ActionListener
+ *
+ */
+
 public class DisplayGame extends JPanel implements ActionListener {
     // servono un array/list di giocatori controllati dalla CPU (= ogni gioatore deve essere un thread) 
 
@@ -35,7 +55,7 @@ public class DisplayGame extends JPanel implements ActionListener {
     private int currentWidth;
     private int currentHeitht;
     private int numoffoods = 1000;
-    public Players player1;
+    public Players player1; 
     private JViewport vPort;
     private Players player2;
     private Players player3;
@@ -60,6 +80,10 @@ public class DisplayGame extends JPanel implements ActionListener {
     private ThreadBot[] vBot;
     private ThreadClassifica tClassifica;
 
+    /**
+     @brief Stato Programma
+     */
+    
     public static enum STATE {
         MENU,
         GAME,
@@ -68,6 +92,14 @@ public class DisplayGame extends JPanel implements ActionListener {
     };
     public static STATE state = STATE.MENU;
 
+/**
+ * @class DisplayGame.java
+ *
+ * @brief Costruttore Default
+ * 
+ * @param Frame F
+ */
+    
     public DisplayGame(Frame f) {
         Timer timer = new Timer(1, this);
         time = System.nanoTime();
@@ -129,10 +161,26 @@ public class DisplayGame extends JPanel implements ActionListener {
         tClassifica = new ThreadClassifica(player1, vBot, this); // questo va modificato sulla base di come gestite i giocatori
         tClassifica.start();
     }
+    
+    /**
+     @brief Setta vPort
+     * 
+     * @param vPort
+     */
 
     public void setvPort(JViewport vPort) {
         this.vPort = vPort;
     }
+    
+    /**
+     @brief Disegna i componenti grafici
+     * 
+     * @param paintComponent
+     * @param Graphics2D
+     * @param setRenderingHint
+     * @param drawImage
+     */
+    
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         //G2
@@ -200,6 +248,19 @@ public class DisplayGame extends JPanel implements ActionListener {
             menu.player2Won(g2);
         }
     }
+    
+    /**
+     @brief Vincita
+     * 
+     * @param player1
+     * @param player2
+     * @param player3
+     * @param player4
+     * @param player5
+     * @param player6
+     * @param height
+     * @param state
+     */
 
     public void whoWon() {
         if (player1.getPlayer().height > player2.getPlayer().height && player1.getPlayer().getBounds().intersects(player2.getPlayer().getBounds())) {
@@ -216,6 +277,20 @@ public class DisplayGame extends JPanel implements ActionListener {
             state = STATE.LOSE;
         }
     }
+    
+    /**
+     @brief Quando si mangia una Sfera
+     * 
+     * @param food
+     * @param length
+     * @param poison
+     * @param player1
+     * @param player2
+     * @param player3
+     * @param player4
+     * @param player5
+     * @param player6
+     */
 
     public void didBallIntersect() {
         for (int i = 0; i < food.getFoods().length; i++) {
@@ -307,6 +382,15 @@ public class DisplayGame extends JPanel implements ActionListener {
             }
         }
     }
+    
+    /**
+     @brief Comunica a video le informazioni della Sfera Avatar
+     * 
+     * @param a
+     * @param font
+     * @param height
+     * @param player1
+     */
 
     public void printInfoBall(Graphics2D g2) {
         g2.setColor(Color.ORANGE);
@@ -323,6 +407,20 @@ public class DisplayGame extends JPanel implements ActionListener {
         g2.drawString("TIME: " + a, (int) (player1.getX() - 600 + (int) player1.getPlayer().height / 2), (int) (player1.getY() - 310 + (int) player1.getPlayer().height / 2)); // 950 480
         
     }
+    
+    /**
+     @brief Utilizzo Mouse per il movimento
+     * 
+     * @param state
+     * @param mousePosition
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     * @param angle
+     * @param player1
+     * @param vPort
+     */
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -364,42 +462,107 @@ public class DisplayGame extends JPanel implements ActionListener {
             repaint();
         }
     }
+    
+    /**
+     @brief Getter Player1
+     * 
+     * @param Player1
+     */
 
     public Players getPlayer1() {
         return player1;
     }
+    
+    /**
+     @brief Setter Player1
+     * 
+     * @param Player1
+     */
 
     public void setPlayer1(Players player1) {
         this.player1 = player1;
     }
+    
+    /**
+     @brief Getter Player2
+     * 
+     * @param Player2
+     */
 
     public Players getPlayer2() {
         return player2;
     }
+    
+    /**
+     @brief Setter Player2
+     * 
+     * @param Player2
+     */
 
     public void setPlayer2(Players player2) {
         this.player2 = player2;
     }
+    
+    /**
+     @brief Getter Food
+     * 
+     * @param food
+     */
 
     public Foods getFood() {
         return food;
     }
+    
+    /**
+     @brief Setter Food
+     * 
+     * @param food
+     */
 
     public void setFood(Foods food) {
         this.food = food;
     }
+    
+    /**
+     @brief Getter Poison
+     * 
+     * @param poison
+     */
 
     public Poisons getPoison() {
         return poison;
     }
 
+    /**
+     @brief Setter Poison
+     * 
+     * @param poison
+     */
+    
     public void setPoison(Poisons poison) {
         this.poison = poison;
     }
+    
+    /**
+     @brief Ridisegna
+     * 
+     */
 
     public void Repaint() {
         repaint();
     }
+    
+    /**
+     @brief Getter Players
+     * 
+     * @param s
+     * @param player2
+     * @param player3
+     * @param player4
+     * @param player5
+     * @param player6
+     * @param aa
+     */
 
     public int[] getplayer(int s) {
         int[] aa = new int[3];
@@ -424,6 +587,18 @@ public class DisplayGame extends JPanel implements ActionListener {
         }
         return aa;
     }
+    
+    /**
+     @brief Getter Size
+     * 
+     * @param s
+     * @param player2
+     * @param player3
+     * @param player4
+     * @param player5
+     * @param player6
+     * @param aa
+     */
 
     public int getsize(int s) {
         int aa = 0;
@@ -444,6 +619,18 @@ public class DisplayGame extends JPanel implements ActionListener {
         return aa;
     }
 
+    /**
+     @brief Disegna a video la Classifica
+     * 
+     * @param classifica
+     * @param id
+     * @param Color
+     * @param font
+     * @param length
+     * @param height
+     * @param player1
+     */
+    
     public void printClassifica(Graphics2D g2) {
         double[] classifica = tClassifica.getClassifica();
         int[] id = tClassifica.getIdentifiers();
