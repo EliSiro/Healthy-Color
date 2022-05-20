@@ -27,7 +27,7 @@ public class ThreadClassifica extends Thread {
     }
 
     public void run() {
-        int i;
+       /* int i;
         double temp;
         while (true) {
             synchronized (sizes) {
@@ -60,7 +60,7 @@ public class ThreadClassifica extends Thread {
             } catch (InterruptedException ex) {
                 Logger.getLogger(ThreadClassifica.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
+        }*/
     }
 
     public double[] getClassifica() {
