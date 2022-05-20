@@ -235,6 +235,7 @@ public class DisplayGame extends JPanel implements ActionListener {
                         }*/
             pointPlayer1 = new Point((int) (player1.getX() - player1.getPlayer().width - 100), (int) (player1.getY() - player1.getPlayer().height - 100));
             menu.setPoint(pointPlayer1);
+//            increaseSize();
             didBallIntersect();
             printInfoBall(g2);
             printClassifica(g2);
@@ -263,6 +264,12 @@ public class DisplayGame extends JPanel implements ActionListener {
      */
 
     public void whoWon() {
+//        if(player2.getPlayer().height==0 && player3.getPlayer().height==0 && player4.getPlayer().height==0 && player5.getPlayer().height==0){
+//            state = STATE.WIN;
+//        }
+//        else if(player1.getPlayer().height==0){
+//            state = STATE.LOSE;
+//        }
         if (player1.getPlayer().height > player2.getPlayer().height && player1.getPlayer().getBounds().intersects(player2.getPlayer().getBounds())) {
             state = STATE.WIN;
         } else if (player1.getPlayer().height < player2.getPlayer().height && player1.getPlayer().getBounds().intersects(player2.getPlayer().getBounds())) {
@@ -292,6 +299,29 @@ public class DisplayGame extends JPanel implements ActionListener {
      * @param player6
      */
 
+//    public void increaseSize(){
+//        if(player1.getSize()>player2.getSize() && player1.getPlayer().getBounds().intersects(player2.getPlayer().getBounds() ) ){
+//            player1.setSize(player1.getSize()+player2.getSize());
+//            player1.setVelocity(player1.getVelocity()-0.03);
+//            player2.setSize(0);
+//        }
+//        else if(player1.getSize()>player3.getSize() && player1.getPlayer().getBounds().intersects(player3.getPlayer().getBounds() ) ){
+//            player1.setSize(player1.getSize()+player3.getSize());
+//            player1.setVelocity(player1.getVelocity()-0.03);
+//            player3.setSize(0);
+//        }
+//        else if(player1.getSize()>player4.getSize() && player1.getPlayer().getBounds().intersects(player4.getPlayer().getBounds() ) ){
+//            player1.setSize(player1.getSize()+player4.getSize());
+//            player1.setVelocity(player1.getVelocity()-0.03);
+//            player4.setSize(0);
+//        }
+//        else if(player1.getSize()>player5.getSize() && player1.getPlayer().getBounds().intersects(player5.getPlayer().getBounds() ) ){
+//            player1.setSize(player1.getSize()+player5.getSize());
+//            player1.setVelocity(player1.getVelocity()-0.03);
+//            player5.setSize(0);
+//        }
+//    }
+    
     public void didBallIntersect() {
         for (int i = 0; i < food.getFoods().length; i++) {
             if (food.getFoods()[i] != null && player1.getPlayer().getBounds().intersects(food.getFoods()[i].getBounds())) {

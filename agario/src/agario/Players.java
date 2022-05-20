@@ -38,7 +38,7 @@ public class Players implements Serializable {
     public boolean isplayer = true;
     private double velocity = 10; //200005
     Random random;
-
+//    double size;
     /**
      @brief Crea random, Posizione random player, Colore random
      * 
@@ -339,4 +339,8 @@ public class Players implements Serializable {
     public double getSize() {
         return Player.width;
     }
+    
+//    public void setSize(double size) {
+//        this.size = size;
+//    }
 }

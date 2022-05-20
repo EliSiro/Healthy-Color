@@ -108,6 +108,10 @@ public class ThreadBot extends Thread {
     public double getSize() {
         return size;
     }
+
+    public void setSize(double size) {
+        this.size = size;
+    }
     
     public int getIdentifier() {
         return id;
