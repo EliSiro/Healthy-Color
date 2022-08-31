@@ -23,3 +23,5 @@
 hs_err_pid*
 replay_pid*
 /agario/dist/
+/agario_1/nbproject/private/
+/agario_1/build/

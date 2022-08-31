@@ -56,6 +56,7 @@ public class DisplayGame extends JPanel implements ActionListener {
     private int currentHeitht;
     private int numoffoods = 1000;
     public Players player1; 
+    private server server;
     private JViewport vPort;
     private Players player2;
     private Players player3;
@@ -74,7 +75,7 @@ public class DisplayGame extends JPanel implements ActionListener {
     private ThreadPoison tp;
     private Frame f;
     private BufferedImage background;
-    private client client;
+
     Players p;
 
     private ThreadBot[] vBot;
@@ -108,13 +109,21 @@ public class DisplayGame extends JPanel implements ActionListener {
         addMouseListener(menu);
         setFocusable(true);
         requestFocusInWindow();
-        client = new client("localhost", 12345);
+        server=new server();
         player1 = new Players();
         player2 = new Players();
         player3 = new Players();
         player4 = new Players();
         player5 = new Players();
         player6 = new Players();
+        ThreadBot b3 = new ThreadBot(player3, 3, this);
+        ThreadBot b4 = new ThreadBot(player4, 4, this);
+        ThreadBot b5 = new ThreadBot(player5, 5, this);
+        ThreadBot b6 = new ThreadBot(player6, 6, this);
+        b3.start();
+        b4.start();
+        b5.start();
+        b6.start();
         comandi = new ComandiAggiuntivi(this, player1, poison, food);
         f.addKeyListener(comandi);
         poison = new Poisons(numoffoods / 10);
@@ -138,6 +147,11 @@ public class DisplayGame extends JPanel implements ActionListener {
             Logger.getLogger(DisplayGame.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        vBot = new ThreadBot[5];
+        vBot[1] = b3;
+        vBot[2] = b4;
+        vBot[3] = b5;
+        vBot[4] = b6;
         /*for (int i = 0; i < 10; i++) {
             //vBot[i]=new ThreadBot();
             //vBot[i].start();
@@ -475,8 +489,12 @@ public class DisplayGame extends JPanel implements ActionListener {
                 }
             }
             repaint();
-            String data = player1.getX() + ";" + player1.getY() + ";" +player1.getSize();
-            String c = client.trasmeti(data);
+             String data = player1.getX() + ";" + player1.getY() + ";" +player1.getSize() + ";" +
+                     player3.getX() + ";" + player3.getY() + ";" +player3.getSize() + ";" +
+                     player4.getX() + ";" + player4.getY() + ";" +player4.getSize() + ";" +
+                     player5.getX() + ";" + player5.getY() + ";" +player5.getSize() + ";" +
+                     player6.getX() + ";" + player6.getY() + ";" +player6.getSize();
+            String c = server.ricevi(data);
             String[] c1 = c.split(";");
             double posx1 = Double.parseDouble(c1[0]);
             double posy1 = Double.parseDouble(c1[1]);
@@ -486,37 +504,7 @@ public class DisplayGame extends JPanel implements ActionListener {
              player2.setX(posy1);
              player2.setSize(size1);
             
-            double posx2 =Double.parseDouble(c1[3]);
-            double posy2 = Double.parseDouble(c1[4]);
-            double size2 = Double.parseDouble(c1[5]);
             
-            player3.setX(posx2);
-             player3.setX(posy2);
-             player3.setSize(size2);
-            
-           double posx3 = Double.parseDouble(c1[6]);
-            double posy3 = Double.parseDouble(c1[7]);
-            double size3 = Double.parseDouble(c1[8]);
-            
-            player4.setX(posx3);
-             player4.setX(posy3);
-             player4.setSize(size3);
-            
-            double posx4 = Double.parseDouble(c1[9]);
-            double posy4 = Double.parseDouble(c1[10]);
-           double size4 = Double.parseDouble(c1[11]);
-            
-            player5.setX(posx4);
-             player5.setX(posy4);
-             player5.setSize(size4);
-            
-            double posx5 = Double.parseDouble(c1[12]);
-            double posy5 = Double.parseDouble(c1[13]);
-            double size5= Double.parseDouble(c1[14]);
-            
-            player6.setX(posx5);
-             player6.setX(posy5);
-             player6.setSize(size5);
         }
     }
     

@@ -342,5 +342,5 @@ public class Players implements Serializable {
     
    public void setSize(double size) {
         Player.width = size;
-   }
+    }
 }
