@@ -26,6 +26,11 @@ public class client {
         }
         this.ip=ip;
         this.porta=porta;
+            try {
+                client.setSoTimeout(100);
+            } catch (SocketException ex) {
+                Logger.getLogger(client.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }
     
     public String trasmeti(String data){

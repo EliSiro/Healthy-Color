@@ -488,7 +488,7 @@ public class DisplayGame extends JPanel implements ActionListener {
                     }
                 }
             }
-            repaint();
+            
              String data = player1.getX() + ";" + player1.getY() + ";" +player1.getSize() + ";" +
                      player3.getX() + ";" + player3.getY() + ";" +player3.getSize() + ";" +
                      player4.getX() + ";" + player4.getY() + ";" +player4.getSize() + ";" +
@@ -503,7 +503,7 @@ public class DisplayGame extends JPanel implements ActionListener {
              player2.setX(posx1);
              player2.setX(posy1);
              player2.setSize(size1);
-            
+            repaint();
             
         }
     }

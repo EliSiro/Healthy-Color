@@ -108,7 +108,7 @@ public class DisplayGame extends JPanel implements ActionListener {
         addMouseListener(menu);
         setFocusable(true);
         requestFocusInWindow();
-        client = new client("localhost", 12345);
+        client = new client("101.58.50.82", 12345);
         player1 = new Players();
         player2 = new Players();
         player3 = new Players();
@@ -474,7 +474,7 @@ public class DisplayGame extends JPanel implements ActionListener {
                     }
                 }
             }
-            repaint();
+            
             String data = player1.getX() + ";" + player1.getY() + ";" +player1.getSize();
             String c = client.trasmeti(data);
             String[] c1 = c.split(";");
@@ -517,6 +517,7 @@ public class DisplayGame extends JPanel implements ActionListener {
             player6.setX(posx5);
              player6.setX(posy5);
              player6.setSize(size5);
+             repaint();
         }
     }
     
